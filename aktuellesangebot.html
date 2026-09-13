@@ -414,6 +414,22 @@
   width: 100%;
 }
 
+    .arrival-service-head {
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: 1rem;
+      row-gap: 0.45rem;
+      align-items: start;
+    }
+
+    .arrival-service-head .price-badge,
+    .arrival-service-head .more-info-button {
+      justify-self: end;
+    }
+
+    .arrival-special {
+      align-self: start;
+    }
+
     .service-block p {
       font-size: 0.9rem;
       line-height: 1.5;
@@ -1221,14 +1237,12 @@
 
             <div class="service-block" id="offer-ankommen">
               <div class="offer-summary">
-                <div class="service-head">
+                <div class="service-head arrival-service-head">
                   <h2>Ankommen und Vertrauen aufbauen</h2>
-                  <div class="badge-stack">
-                    <span class="price-badge">144 €</span>
-                    <button class="more-info-button" type="button">Mehr Infos z. Angebot</button>
-                  </div>
+                  <span class="price-badge">144 €</span>
+                  <p class="arrival-special"><strong>Spezialangebot für Hunde aus dem Ausland sowie generell ängstliche und unsichere Hunde.</strong></p>
+                  <button class="more-info-button" type="button">Mehr Infos z. Angebot</button>
                 </div>
-                <p><strong>Spezialangebot für Hunde aus dem Ausland sowie generell ängstliche und unsichere Hunde.</strong></p>
                 <p>Ein neuer Start. Ein neues Leben. Und jede Menge neuer Eindrücke für Ihren Hund.</p>
                 <p>Hunde aus dem Ausland brauchen oft mehr als nur Training – sie brauchen Zeit, Verständnis und eine sichere Begleitung, um wirklich anzukommen.</p>
                 <p>In meiner fünfzehnjährigen Tätigkeit im In- und Auslandstierschutz habe ich viele Adoptanten betreut und weiß, wie wichtig und sinnvoll eine fachliche Begleitung gerade am Anfang ist. Sie gibt dem Halter Sicherheit im Handling und schafft somit die Basis für eine stabile und vertrauensvolle Mensch-Hund-Beziehung.</p>
