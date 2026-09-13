@@ -416,25 +416,49 @@
 
     .service-block p {
       font-size: 0.9rem;
-      line-height: 1.65;
+      line-height: 1.5;
       color: var(--text);
-      margin-bottom: 0.65rem;
+      margin: 0;
     }
-
-    .service-block p:last-child { margin-bottom: 0; }
 
     .service-block ul {
       margin-left: 1.1rem;
-      margin-top: 0.45rem;
-      margin-bottom: 0.85rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.75rem;
       display: grid;
-      gap: 0.35rem;
+      gap: 0.08rem;
     }
 
     .service-block li {
       font-size: 0.9rem;
-      line-height: 1.55;
+      line-height: 1.5;
       color: var(--text);
+    }
+
+    .service-block ul + p,
+    .service-block p + .offer-subsection {
+      margin-top: 0.65rem;
+    }
+
+    .service-block p:has(+ ul) {
+      margin-top: 0.65rem;
+    }
+
+    .service-block p:has(+ ul) + ul {
+      margin-top: 0.4rem;
+    }
+
+    .offer-more h2 {
+      margin-bottom: 0.8rem;
+    }
+
+    .offer-more h3 {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .offer-more h3 + h3 {
+      margin-top: 0.65rem;
     }
 
     .offer-tabs {
@@ -481,6 +505,16 @@
     .offer-panel[hidden],
     .offer-summary[hidden],
     .offer-more[hidden] { display: none; }
+
+    .offer-tabs[hidden],
+    .service-block.detail-hidden,
+    .offer-panel.arrival-detail-open > .service-block:not(#offer-ankommen) {
+      display: none !important;
+    }
+
+    .service-card.arrival-detail-active .service-scroll {
+      overscroll-behavior: contain;
+    }
 
     .offer-panel { padding-bottom: 2.4rem; }
     .offer-panel.is-fading { animation: category-fade 420ms ease both; }
@@ -1096,7 +1130,6 @@
               </div>
               <p>Manchmal kommt im Leben alles anders als geplant.</p>
               <p>Ein plötzlicher Krankenhausaufenthalt, ein unerwarteter Termin oder eine andere dringende Situation kann dazu führen, dass die Betreuung Ihres Tieres kurzfristig organisiert werden muss.</p>
-              
               <p>Wenn Sie ganz kurzfristig eine Betreuung für Ihren Hund, Ihre Katze oder Ihr Kleintier benötigen, können Sie sich gerne bei mir melden. Wenn es meine zeitlichen Möglichkeiten zulassen, versuche ich <strong>so schnell und unkompliziert wie möglich einzuspringen</strong>.</p>
               <p><strong>Die Notfallbetreuung kann beispielsweise kurzfristig erforderlich sein bei:</strong></p>
               <ul>
@@ -1108,7 +1141,6 @@
               </ul>
               <p>Ob eine kurzfristige Betreuung möglich ist, hängt immer von meiner aktuellen Verfügbarkeit, der benötigten Betreuungsdauer und den Umständen ab. <strong>Ich kann daher keine Notfallbetreuung zu jeder Zeit garantieren.</strong></p>
               <p>Rufen Sie mich im Notfall einfach an. Sollten Sie mich nicht direkt erreichen, können Sie mir gerne eine SMS oder E-Mail hinterlassen. Ich melde mich schnellstmöglich zurück.</p>
-              <div class="offer-subsection">
             </div>
 
             <div class="service-block discount-block">
@@ -1197,7 +1229,6 @@
                   </div>
                 </div>
                 <p><strong>Spezialangebot für Hunde aus dem Ausland sowie generell ängstliche und unsichere Hunde.</strong></p>
-                <br>
                 <p>Ein neuer Start. Ein neues Leben. Und jede Menge neuer Eindrücke für Ihren Hund.</p>
                 <p>Hunde aus dem Ausland brauchen oft mehr als nur Training – sie brauchen Zeit, Verständnis und eine sichere Begleitung, um wirklich anzukommen.</p>
                 <p>In meiner fünfzehnjährigen Tätigkeit im In- und Auslandstierschutz habe ich viele Adoptanten betreut und weiß, wie wichtig und sinnvoll eine fachliche Begleitung gerade am Anfang ist. Sie gibt dem Halter Sicherheit im Handling und schafft somit die Basis für eine stabile und vertrauensvolle Mensch-Hund-Beziehung.</p>
@@ -1429,13 +1460,19 @@
       const arrivalMore = arrivalOffer?.querySelector('.offer-more');
       const moreButton = arrivalOffer?.querySelector('.more-info-button');
       const backButton = arrivalOffer?.querySelector('.back-button');
+      const serviceCard = document.querySelector('.service-card');
+      const offerTabs = document.querySelector('.offer-tabs');
       const adviceBlocks = advicePanel ? Array.from(advicePanel.querySelectorAll(':scope > .service-block')) : [];
+      let overviewScrollTop = 0;
 
       const setArrivalDetailMode = (isOpen) => {
         adviceBlocks.forEach((block) => {
+          block.classList.toggle('detail-hidden', isOpen && block !== arrivalOffer);
           if (block !== arrivalOffer) block.hidden = isOpen;
         });
         advicePanel?.classList.toggle('arrival-detail-open', isOpen);
+        serviceCard?.classList.toggle('arrival-detail-active', isOpen);
+        if (offerTabs) offerTabs.hidden = isOpen;
       };
 
       const resetArrivalDetails = () => {
@@ -1471,11 +1508,14 @@
       });
 
       moreButton?.addEventListener('click', () => {
+        overviewScrollTop = serviceScroll.scrollTop;
         setArrivalDetailMode(true);
         arrivalSummary.hidden = true;
         arrivalMore.hidden = false;
         arrivalMore.classList.add('is-entering');
-        serviceScroll.scrollTo({ top: arrivalOffer.offsetTop - advicePanel.offsetTop, behavior: 'smooth' });
+        window.requestAnimationFrame(() => {
+          serviceScroll.scrollTop = 0;
+        });
         backButton.focus();
       });
 
@@ -1484,7 +1524,9 @@
         arrivalMore.hidden = true;
         arrivalMore.classList.remove('is-entering');
         arrivalSummary.hidden = false;
-        serviceScroll.scrollTo({ top: arrivalOffer.offsetTop - advicePanel.offsetTop, behavior: 'smooth' });
+        window.requestAnimationFrame(() => {
+          serviceScroll.scrollTo({ top: overviewScrollTop, behavior: 'smooth' });
+        });
         moreButton.focus();
       });
 
