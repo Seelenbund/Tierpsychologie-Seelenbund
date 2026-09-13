@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tierpsychologie | Start</title>
+  <style>
+    :root {
+      --bg: #fffaf6;
+      --bg-soft: #fff4ea;
+      --card: rgba(255, 255, 255, 0.84);
+      --text: #4d4038;
+      --text-soft: #6f6159;
+      --primary: #d89d7d;
+      --primary-dark: #bf7e58;
+      --accent: #d7eadf;
+      --line: rgba(77, 64, 56, 0.1);
+      --shadow: 0 14px 35px rgba(99, 74, 58, 0.12);
+      --radius: 22px;
+      --max: 1180px;
+      --header-h: 72px;
+      --footer-h: 55px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+  scroll-behavior: smooth;
+  height: 100%;
+  overflow: hidden;
+}
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(247, 242, 255, 0.58) 0 220px, transparent 380px),
+        radial-gradient(circle at 82% 78%, rgba(242, 236, 252, 0.42) 0 180px, transparent 320px),
+        radial-gradient(circle at 50% 20%, rgba(255,255,255,0.96) 0 120px, transparent 260px),
+        radial-gradient(circle at 12% 85%, rgba(246, 242, 250, 0.38) 0 110px, transparent 230px),
+        radial-gradient(circle at 88% 18%, rgba(250, 246, 255, 0.46) 0 110px, transparent 240px),
+        linear-gradient(135deg, #ffffff 0%, #fdfbff 42%, #fffaf6 74%, #ffffff 100%);
+      opacity: 0;
+      transition: opacity 0.45s ease;
+      animation: backgroundMood 14s ease-in-out infinite alternate;
+    }
+
+    body.page-visible {
+      opacity: 1;
+    }
+
+    body.page-fade-out {
+      opacity: 0;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -12%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body::before {
+      background:
+        radial-gradient(circle at 12% 22%, rgba(255,255,255,0.55) 0 26px, transparent 28px),
+        radial-gradient(circle at 26% 68%, rgba(244,236,255,0.42) 0 34px, transparent 36px),
+        radial-gradient(circle at 48% 20%, rgba(255,255,255,0.34) 0 20px, transparent 22px),
+        radial-gradient(circle at 64% 62%, rgba(238,226,255,0.44) 0 40px, transparent 44px),
+        radial-gradient(circle at 82% 30%, rgba(255,255,255,0.40) 0 28px, transparent 30px),
+        radial-gradient(circle at 90% 72%, rgba(246,238,255,0.34) 0 24px, transparent 26px);
+      filter: blur(10px);
+      opacity: 1;
+      animation: bokehFloat1 5s ease-in-out infinite alternate;
+    }
+
+    body::after {
+      background:
+        radial-gradient(circle at 18% 82%, rgba(255,255,255,0.34) 0 58px, transparent 60px),
+        radial-gradient(circle at 38% 42%, rgba(240,230,255,0.38) 0 48px, transparent 52px),
+        radial-gradient(circle at 58% 84%, rgba(255,255,255,0.28) 0 34px, transparent 38px),
+        radial-gradient(circle at 74% 18%, rgba(236,224,255,0.34) 0 56px, transparent 60px),
+        radial-gradient(circle at 92% 52%, rgba(255,255,255,0.26) 0 38px, transparent 42px);
+      filter: blur(16px);
+      opacity: 0.95;
+      animation: bokehFloat2 6.5s ease-in-out infinite alternate;
+    }
+
+    main::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 14% 24%, rgba(255,255,255,0.34) 0 8px, transparent 10px),
+        radial-gradient(circle at 24% 64%, rgba(255,255,255,0.28) 0 6px, transparent 8px),
+        radial-gradient(circle at 38% 28%, rgba(228,220,242,0.30) 0 9px, transparent 11px),
+        radial-gradient(circle at 52% 74%, rgba(255,255,255,0.24) 0 7px, transparent 9px),
+        radial-gradient(circle at 66% 34%, rgba(255,255,255,0.26) 0 8px, transparent 10px),
+        radial-gradient(circle at 78% 56%, rgba(228,220,242,0.24) 0 10px, transparent 12px),
+        radial-gradient(circle at 90% 26%, rgba(255,255,255,0.28) 0 7px, transparent 9px);
+      filter: blur(1px);
+      opacity: 0.9;
+      animation: magicSparkles 3.6s ease-in-out infinite alternate;
+    }
+main {
+  height: calc(100vh - var(--header-h) - var(--footer-h));
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background:
+        radial-gradient(circle at 10% 35%, rgba(255, 220, 220, 0.18) 0 34px, transparent 62px),
+        radial-gradient(circle at 26% 72%, rgba(255, 240, 205, 0.18) 0 42px, transparent 72px),
+        radial-gradient(circle at 46% 28%, rgba(230, 220, 245, 0.18) 0 40px, transparent 70px),
+        radial-gradient(circle at 68% 68%, rgba(220, 236, 255, 0.16) 0 44px, transparent 76px),
+        radial-gradient(circle at 86% 34%, rgba(236, 226, 255, 0.16) 0 38px, transparent 68px),
+        linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.80),
+          rgba(255, 248, 244, 0.72)
+        );
+      border-bottom: 1px solid rgba(255, 255, 255, 0.52);
+      box-shadow: 0 10px 30px rgba(191, 126, 88, 0.08);
+      overflow: visible;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        100deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.10) 18%,
+        rgba(255, 255, 255, 0.42) 50%,
+        rgba(255, 255, 255, 0.10) 82%,
+        transparent 100%
+      );
+      transform: translateX(-140%);
+      animation: headerShimmer 3.8s linear infinite;
+      pointer-events: none;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.2rem;
+      padding: 0.5rem 0;
+      position: relative;
+      overflow: visible;
+      isolation: isolate;
+    }
+
+    .nav::after {
+      content: "";
+      position: absolute;
+      top: -10%;
+      left: -20%;
+      width: 70%;
+      height: 120%;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 210, 210, 0.08) 16%,
+        rgba(255, 238, 196, 0.16) 32%,
+        rgba(228, 220, 245, 0.22) 50%,
+        rgba(220, 236, 255, 0.16) 68%,
+        rgba(236, 226, 255, 0.10) 84%,
+        transparent 100%
+      );
+      filter: blur(10px);
+      transform: translateX(-120%);
+      animation: navShimmer 3.2s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+      padding-left: 0.4rem;
+    }
+
+    .brand-logo {
+      width: 240px;
+      height: auto;
+      display: block;
+      animation: pulseLogo 2.8s infinite ease-in-out;
+      transition: transform 0.25s ease, filter 0.25s ease;
+      transform-origin: center;
+      filter:
+        drop-shadow(0 8px 14px rgba(255,255,255,0.18))
+        drop-shadow(0 10px 18px rgba(216,157,125,0.12));
+    }
+
+    .brand:hover .brand-logo {
+      animation: none;
+      transform: scale(1.08);
+      filter:
+        drop-shadow(0 0 12px rgba(255,255,255,0.34))
+        drop-shadow(0 10px 18px rgba(216,157,125,0.18));
+    }
+
+    nav {
+      position: relative;
+      z-index: 2;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      display: inline-block;
+      padding: 0.38rem 0.7rem;
+      border-radius: 999px;
+      transition: 0.25s ease;
+      font-weight: 600;
+      color: var(--text-soft);
+      line-height: 1.2;
+      position: relative;
+      background: rgba(255,255,255,0.16);
+      overflow: hidden;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          100deg,
+          transparent 0%,
+          rgba(255,255,255,0.04) 24%,
+          rgba(255,255,255,0.28) 50%,
+          rgba(255,255,255,0.04) 76%,
+          transparent 100%
+        );
+      transform: translateX(-140%);
+      opacity: 0;
+    }
+
+    nav a:hover::after,
+    nav a.active::after {
+      opacity: 1;
+      animation: linkSparkle 2.2s ease-in-out infinite;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #b89a7a;
+      background: rgba(255,255,255,0.42);
+      box-shadow:
+        0 6px 16px rgba(216, 157, 125, 0.14),
+        0 0 10px rgba(255,255,255,0.16);
+    }
+
+    .hero {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1.4rem 0;
+}
+
+    .hero-grid {
+  display: grid;
+  grid-template-columns: 460px 520px;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+    .hero-card,
+    .image-card {
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.90),
+        rgba(255,255,255,0.82)
+      );
+      border: 1px solid rgba(255, 255, 255, 0.62);
+      border-radius: var(--radius);
+      box-shadow:
+        0 14px 35px rgba(99, 74, 58, 0.10),
+        0 4px 14px rgba(255,255,255,0.35) inset;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card {
+  padding: 1.45rem 1.55rem;
+  max-width: 460px;
+}
+
+    h1, h2, h3 {
+      line-height: 1.18;
+    }
+
+    h1 {
+  font-size: clamp(1.05rem, 1.28vw, 1.42rem);
+  margin-bottom: 1.5rem;
+}
+
+    h2 {
+      font-size: clamp(1.5rem, 2.3vw, 2.1rem);
+      margin-bottom: 1rem;
+    }
+
+    .intro-text {
+  max-width: 62ch;
+}
+
+    .intro-text p {
+  margin-bottom: 0.65rem;
+  color: var(--text);
+  line-height: 1.55;
+  font-size: 0.9rem;
+}
+
+    .signature {
+      margin-top: 1.5rem;
+      margin-bottom: 0;
+    }
+
+    .hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 3.0rem;
+}
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0.85rem 1.25rem;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        100deg,
+        transparent 0%,
+        rgba(255,255,255,0.08) 30%,
+        rgba(255,255,255,0.32) 50%,
+        rgba(255,255,255,0.08) 70%,
+        transparent 100%
+      );
+      transform: translateX(-140%);
+      opacity: 0;
+    }
+
+    .btn:hover::after {
+      opacity: 1;
+      animation: linkSparkle 1.8s ease-in-out 1;
+    }
+
+    .btn-primary {
+      background: #d7b89a;
+      color: white;
+      border: 1px solid rgba(77, 64, 56, 0.08);
+    }
+
+    .btn-primary:hover {
+      background: #caa786;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: #d8bea5;
+      border: 1px solid #ccb094;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: #cdae8f;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .image-card {
+  padding: 0.7rem;
+  overflow: hidden;
+  position: relative;
+}
+
+    .image-stage {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      aspect-ratio: 4 / 4.8;
+    }
+
+.hero-visual {
+  border-radius: 18px;
+  aspect-ratio: 4 / 4.8;
+  width: 100%;
+  background:
+    linear-gradient(rgba(255,255,255,0.10), rgba(255,255,255,0.10)),
+    url('files/PiaLilly.jpg') center center / cover no-repeat;
+  display: block;
+  box-shadow:
+    inset 0 0 18px rgba(255,255,255,0.18),
+    0 16px 30px rgba(99,74,58,0.10);
+  filter: saturate(1) brightness(1) contrast(1);
+  transition: filter 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+    .trust-panel {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      padding: 1.15rem 1.3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.93);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.32s ease, visibility 0.32s ease;
+    }
+
+    .image-card:hover .trust-panel,
+    .image-card:focus-within .trust-panel {
+      opacity: 1;
+      visibility: visible;
+    }
+    .trust-panel h2 { margin-bottom: clamp(1.9rem, 4vw, 3rem); font-size: clamp(1.1rem, 2.1vw, 1.4rem); font-weight: 700; line-height: 1.2; }
+    .trust-panel p { margin: 0 0 0.65rem; font-size: clamp(0.62rem, 1.7vw, 1.05rem); font-weight: 400; line-height: 1.5; text-align: left; }
+    .trust-panel p:last-child { margin-bottom: 0; }
+
+.hero-visual:hover {
+  filter: saturate(1.2) brightness(1.04) contrast(1.05);
+  transform: scale(1.015);
+  box-shadow:
+    inset 0 0 18px rgba(255,255,255,0.22),
+    0 20px 36px rgba(99,74,58,0.14);
+}
+
+.image-card:hover .hero-visual,
+.image-card:focus-within .hero-visual,
+.image-card:hover .hero-visual:hover {
+  filter: saturate(0.85) brightness(0.72) blur(4px);
+  transform: scale(1.025);
+}
+
+    footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1200;
+  height: var(--footer-h);
+  border-top: 1px solid var(--line);
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  height: var(--footer-h);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.footer-inner div,
+.footer-inner a {
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-inner a {
+  color: var(--text-soft);
+  font-weight: 600;
+}
+
+.footer-inner a:hover {
+  color: #b89a7a;
+}
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255, 244, 234, 0.18), transparent 34%),
+        rgba(68, 51, 42, 0.3);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.25s ease;
+      z-index: 5000;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .overlay-box {
+      position: relative;
+      width: min(100%, 560px);
+      background: rgba(255, 250, 245, 0.82);
+      border: 1px solid rgba(255,255,255,0.48);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.16),
+        inset 0 1px 10px rgba(255,255,255,0.35);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .overlay-box h2 {
+      margin-bottom: 1rem;
+    }
+
+    .home-notice {
+      margin-bottom: 1rem;
+      padding: 0.58rem 0.78rem;
+      border: 1px solid rgba(191, 126, 88, 0.16);
+      border-left: 3px solid rgba(183, 92, 92, 0.72);
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(255, 247, 242, 0.92), rgba(255, 251, 248, 0.72));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+      font-weight: 600;
+      font-size: 0.74rem;
+      line-height: 1.34;
+    }
+
+    .home-notice p + p {
+      margin-top: 0.24rem;
+    }
+
+    .home-notice-title {
+      color: #a95757;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .home-notice-link {
+      color: #9e4949;
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-color: rgba(158, 73, 73, 0.5);
+      text-underline-offset: 2px;
+    }
+
+    .home-notice-link:hover,
+    .home-notice-link:focus-visible {
+      color: #7e3838;
+    }
+
+    .notice-overlay-box {
+      width: min(100%, 590px);
+      max-height: calc(100vh - 2rem);
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding: 2.15rem 2.35rem 2.25rem;
+      color: #2f2926;
+      text-align: center;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(215, 234, 223, 0.42), transparent 32%),
+        radial-gradient(circle at 0% 100%, rgba(216, 157, 125, 0.14), transparent 38%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 248, 243, 0.94));
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      box-shadow:
+        0 26px 70px rgba(99, 74, 58, 0.2),
+        0 4px 18px rgba(255, 255, 255, 0.5) inset;
+      transform: translateY(10px) scale(0.98);
+      transition: transform 0.28s ease;
+    }
+
+    .overlay.active .notice-overlay-box {
+      transform: translateY(0) scale(1);
+    }
+
+    .notice-overlay-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 12%;
+      left: 12%;
+      height: 3px;
+      border-radius: 0 0 999px 999px;
+      background: linear-gradient(90deg, transparent, #d89d7d, #d7eadf, transparent);
+    }
+
+    .notice-overlay-box > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .notice-overlay-box h2 {
+      margin-bottom: 0.85rem;
+      color: #a95757;
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .notice-overlay-box p {
+      font-weight: 450;
+      font-size: 0.98rem;
+      line-height: 1.68;
+    }
+
+    .notice-overlay-box p + p {
+      margin-top: 0.8rem;
+    }
+
+    .notice-overlay-box a {
+      display: inline-block;
+      margin: 0 0.12rem;
+      padding: 0.02rem 0.28rem;
+      border-radius: 6px;
+      color: #9e4949;
+      font-weight: 700;
+      text-decoration-color: rgba(158, 73, 73, 0.55);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      background: rgba(216, 157, 125, 0.1);
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+
+    .notice-overlay-box a:hover,
+    .notice-overlay-box a:focus-visible {
+      color: #7e3838;
+      background: rgba(216, 157, 125, 0.2);
+    }
+
+    .notice-overlay-box .overlay-close {
+      top: 0.75rem;
+      right: 0.8rem;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(191, 126, 88, 0.14);
+      border-radius: 50%;
+      color: #8f7568;
+      font-size: 1.45rem;
+      background: rgba(255, 255, 255, 0.58);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .notice-overlay-box .overlay-close:hover,
+    .notice-overlay-box .overlay-close:focus-visible {
+      color: #765e52;
+      background: rgba(255, 244, 234, 0.95);
+      transform: rotate(4deg) scale(1.04);
+    }
+
+    .hours-layout {
+      display: grid;
+      grid-template-columns: 1.4fr 0.9fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .hours-list {
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .hours-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 0.7rem;
+      align-items: start;
+      color: #4d4038;
+      font-size: 0.82rem;
+      line-height: 1.3;
+    }
+
+    .hours-day {
+      font-weight: 700;
+    }
+
+    .hours-time {
+      text-align: left;
+    }
+
+    .hours-note strong {
+      font-weight: 600;
+    }
+
+    .hours-note {
+      font-size: 0.8rem;
+    }
+
+    .overlay-close {
+      position: absolute;
+      top: 0.7rem;
+      right: 0.9rem;
+      border: none;
+      background: transparent;
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+      color: #4d4038;
+    }
+
+    @keyframes pulseLogo {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    @keyframes magicBokehOne {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      100% {
+        transform: translate3d(-40px, -26px, 0) scale(1.12);
+      }
+    }
+
+    @keyframes magicBokehTwo {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      100% {
+        transform: translate3d(30px, 22px, 0) scale(1.14);
+      }
+    }
+
+    @keyframes headerShimmer {
+      0% {
+        transform: translateX(-140%);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.3;
+      }
+      50% {
+        opacity: 0.75;
+      }
+      80% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateX(160%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes navShimmer {
+      0% {
+        transform: translateX(-120%);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.35;
+      }
+      50% {
+        opacity: 0.9;
+      }
+      85% {
+        opacity: 0.35;
+      }
+      100% {
+        transform: translateX(170%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes linkSparkle {
+      0% {
+        transform: translateX(-140%);
+      }
+      100% {
+        transform: translateX(160%);
+      }
+    }
+
+    @keyframes magicSparkles {
+      0% {
+        opacity: 0.45;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0.95;
+        transform: translateY(-8px) scale(1.08);
+      }
+    }
+
+    @keyframes backgroundMood {
+      0% {
+        filter: brightness(1) saturate(1);
+      }
+      50% {
+        filter: brightness(1.02) saturate(1.03);
+      }
+      100% {
+        filter: brightness(0.97) saturate(0.96);
+      }
+    }
+
+    @keyframes bokehFloat1 {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      100% {
+        transform: translate3d(-46px, -30px, 0) scale(1.12);
+      }
+    }
+
+    @keyframes bokehFloat2 {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      100% {
+        transform: translate3d(38px, 24px, 0) scale(1.14);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 2.6rem;
+      }
+
+      .hero-visual {
+  aspect-ratio: 4 / 4.9;
+}
+
+      .brand-logo {
+        width: 210px;
+      }
+    }
+
+    @media (max-width: 760px) {
+  :root {
+    --header-h: 150px;
+  }
+
+  .nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0;
+  }
+
+  .nav::after {
+    width: 70%;
+    left: 15%;
+  }
+
+  .brand {
+    justify-content: center;
+  }
+
+  .brand-logo {
+    width: 190px;
+  }
+
+  nav ul {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  nav a {
+    padding: 0.28rem 0.62rem;
+    font-size: 0.96rem;
+  }
+
+  .hero-card {
+    padding: 1.25rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+    @media (max-width: 640px) {
+      .hours-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hours-row {
+        grid-template-columns: 1fr;
+        gap: 0.2rem;
+      }
+
+      .notice-overlay-box {
+        padding: 2rem 1.25rem 1.55rem;
+        border-radius: 20px;
+      }
+
+      .notice-overlay-box h2 {
+        padding: 0 2rem;
+      }
+
+      .notice-overlay-box p {
+        line-height: 1.6;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width: min(calc(100% - 1rem), var(--max));
+      }
+
+      .brand-logo {
+        width: 160px;
+      }
+
+      .hero {
+        padding-top: 2rem;
+      }
+
+      .hero-visual {
+  aspect-ratio: 4 / 4.9;
+}
+
+      h1 {
+  font-size: clamp(1rem, 4.5vw, 1.25rem);
+}
+
+      .footer-inner {
+  height: var(--footer-h);
+  min-height: var(--footer-h);
+  padding: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+    }
+  </style>
+  <link rel="stylesheet" href="files/responsive.css">
+  <link rel="stylesheet" href="files/privacy.css">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="home.html" aria-label="Zurück zur Startseite">
+        <img class="brand-logo" src="files/Logo1.png" alt="Logo Tierpsychologie" />
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" aria-label="Hauptnavigation">
+        <ul>
+          <li><a class="active" href="home.html">Home</a></li>
+          <li><a href="philosophie.html">Philosophie</a></li>
+          <li><a href="qualifikationen.html">Qualifikationen</a></li>
+          <li><a href="aktuellesangebot.html">Aktuelles Angebot</a></li>
+          <li><a href="leistungenundpreise.html">Leistungen & Preise</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <div class="home-notice" aria-label="Aktueller Hinweis">
+            <p class="home-notice-title"><strong>Aktueller Hinweis</strong></p>
+            <p><strong>Bitte beachten Sie, dass ich derzeit kein Hundetraining und keine Verhaltensberatung für Hunde anbiete.</strong></p>
+            <p><strong>Mein Angebot konzentriert sich aktuell auf Beratungsangebote (auch für Hunde aus dem Ausland) und die liebevolle Betreuung von Hunden, Katzen und Kleintieren in ihrem gewohnten Zuhause. Bitte schauen Sie unter dem Menüpunkt <a class="home-notice-link" href="aktuellesangebot.html">Aktuelles Angebot</a>.</strong></p>
+            <p><strong>Vielen Dank für Ihr Verständnis.</strong></p>
+          </div>
+
+          <h1>Ziel ist nicht, dass Ihr Hund einfach „funktioniert“, sondern, dass er sich bei Ihnen wirklich sicher fühlt.</h1>
+
+<div class="intro-text">
+  <p>Herzlich willkommen,</p>
+
+  <p>schön, dass Sie hier sind.</p>
+
+  <p>Hunde bereichern unser Leben auf eine ganz besondere Weise – sie schenken uns Nähe, Freude und Verbindung. Gleichzeitig bringen sie manchmal auch Herausforderungen mit sich, die im Alltag verunsichern oder belasten können.</p>
+
+  <p>Wenn Sie sich Unterstützung wünschen oder einfach Klarheit in Ihre Situation bringen möchten, melden Sie sich gerne bei mir.</p>
+
+  <p>Ich freue mich darauf, Sie kennenzulernen und ein Stück Ihres Weges begleiten zu dürfen.</p>
+</div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#" id="open-hours">Öffnungszeiten</a>
+            <a class="btn btn-secondary" href="kontakt.html">Kontakt aufnehmen</a>
+          </div>
+        </div>
+
+        <div class="image-card" id="trust-card">
+          <div class="image-stage" tabindex="0" aria-label="Vertrauen und Verschwiegenheit">
+            <div class="hero-visual"></div>
+            <div class="trust-panel" id="trust-panel">
+              <h2>Vertrauen &amp; Verschwiegenheit</h2>
+              <p>Durch meine jahrelange Erfahrung im Tierschutz weiß ich, dass sich viele Menschen nicht trauen, Hilfe zu suchen oder sie anzunehmen. Manchmal aus Angst, verurteilt zu werden, manchmal aus Scham oder weil man denkt: <em>„Das müsste ich doch eigentlich alleine schaffen.“</em></p>
+              <p>Deshalb möchte ich Ihnen sagen: Ihre Sorgen und Fragen sind bei mir in sicheren Händen.</p>
+              <p>Sie dürfen ehrlich sein – auch dann, wenn Ihnen etwas unangenehm ist oder Sie selbst nicht wissen, wie Sie mit einer Situation umgehen sollen. Ich begegne Ihnen und Ihrem Tier wertschätzend, offen und ohne Verurteilung. Was Sie mir anvertrauen, behandle ich selbstverständlich vertraulich.</p>
+              <p>Wir schauen gemeinsam hin und probieren alles, was im Rahmen meiner Möglichkeiten liegt, damit Sie und Ihr Tier sich miteinander wohlfühlen und Ihren gemeinsamen Weg gut meistern können.</p>
+              <p class="trust-closing">Sie müssen nicht alles alleine schaffen. ❤️</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="overlay" id="notice-overlay" role="dialog" aria-modal="true" aria-labelledby="notice-title">
+    <div class="overlay-box notice-overlay-box">
+      <button class="overlay-close" id="close-notice" aria-label="Hinweis schließen">×</button>
+      <h2 id="notice-title">Aktueller Hinweis</h2>
+      <p>Bitte beachten Sie, dass ich derzeit kein Hundetraining und keine Verhaltensberatung für Hunde anbiete.</p>
+      <p>Bitte schauen Sie unter dem Menüpunkt <a href="aktuellesangebot.html">Aktuelles Angebot</a>.</p>
+      <p>Vielen Dank für Ihr Verständnis.</p>
+    </div>
+  </div>
+
+  <div class="overlay" id="hours-overlay">
+    <div class="overlay-box">
+      <button class="overlay-close" id="close-hours" aria-label="Overlay schließen">×</button>
+      <h2>Öffnungszeiten</h2>
+
+      <div class="hours-layout">
+        <div class="hours-list">
+          <div class="hours-row">
+            <span class="hours-day">Montag bis Mittwoch:</span>
+            <span class="hours-time">09:30 – 13:00 Uhr<br>14:30 – 19:00 Uhr</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Donnerstag:</span>
+            <span class="hours-time">14:00 – 19:00 Uhr</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Freitag:</span>
+            <span class="hours-time">09:00 – 13:00 Uhr</span>
+          </div>
+        </div>
+
+        <div class="hours-note">
+          <strong>Termine nach Vereinbarung</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="impressum-overlay">
+    <div class="overlay-box">
+      <button class="overlay-close" id="close-impressum" aria-label="Impressum schließen">×</button>
+      <h2>Impressum</h2>
+      <div class="hours-list">
+        <p><strong>Tierpsychologie</strong></p>
+        <p>Pia Bortels</p>
+        <p>Alte Stöckener Str. 94</p>
+        <p>30149 Hannover</p>
+        <p>E-Mail: info@tierpsychologie-seelenbund.de</p>
+        <p>Telefon: 0176 87925330</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-copyright">© Urheberrecht. Alle Rechte vorbehalten.<span class="footer-brandline">2026 Tierpsychologie Seelenbund.</span></div>
+      <a href="impressum.html">Impressum &amp; Datenschutz</a>
+    </div>
+  </footer>
+
+      <script>
+      window.addEventListener("load", () => {
+        document.body.classList.add("page-visible");
+      });
+
+      const openBtn = document.getElementById("open-hours");
+      const closeBtn = document.getElementById("close-hours");
+      const overlay = document.getElementById("hours-overlay");
+
+      const openImpressumBtn = document.getElementById("open-impressum");
+      const closeImpressumBtn = document.getElementById("close-impressum");
+      const impressumOverlay = document.getElementById("impressum-overlay");
+
+      const noticeOverlay = document.getElementById("notice-overlay");
+      const closeNoticeBtn = document.getElementById("close-notice");
+      if (noticeOverlay && closeNoticeBtn) {
+        noticeOverlay.classList.add("active");
+
+        closeNoticeBtn.addEventListener("click", function () {
+          noticeOverlay.classList.remove("active");
+        });
+
+        noticeOverlay.addEventListener("click", function (e) {
+          if (e.target === noticeOverlay) {
+            noticeOverlay.classList.remove("active");
+          }
+        });
+      }
+
+      if (openBtn && closeBtn && overlay) {
+        openBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          overlay.classList.add("active");
+        });
+
+        closeBtn.addEventListener("click", function () {
+          overlay.classList.remove("active");
+        });
+
+        overlay.addEventListener("click", function (e) {
+          if (e.target === overlay) {
+            overlay.classList.remove("active");
+          }
+        });
+      }
+
+      if (openImpressumBtn && closeImpressumBtn && impressumOverlay) {
+        openImpressumBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          impressumOverlay.classList.add("active");
+        });
+
+        closeImpressumBtn.addEventListener("click", function () {
+          impressumOverlay.classList.remove("active");
+        });
+
+        impressumOverlay.addEventListener("click", function (e) {
+          if (e.target === impressumOverlay) {
+            impressumOverlay.classList.remove("active");
+          }
+        });
+      }
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          document.querySelectorAll(".overlay.active").forEach(activeOverlay => {
+            activeOverlay.classList.remove("active");
+          });
+        }
+      });
+
+      document.querySelectorAll('a[href]').forEach(link => {
+        const href = link.getAttribute('href');
+
+        if (
+          href &&
+          !href.startsWith('#') &&
+          !href.startsWith('mailto:') &&
+          !href.startsWith('tel:') &&
+          !link.hasAttribute('target') &&
+          link.id !== 'open-hours' &&
+          link.id !== 'open-impressum'
+        ) {
+          link.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.body.classList.remove('page-visible');
+            document.body.classList.add('page-fade-out');
+
+            setTimeout(() => {
+              window.location.href = href;
+            }, 350);
+          });
+        }
+      });
+    </script>
+<script src="files/responsive.js"></script>
+</body>
+</html>

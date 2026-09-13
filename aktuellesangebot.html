@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tierpsychologie | Aktuelles Angebot</title>
+  <style>
+    :root {
+      --bg: #fffaf6;
+      --bg-soft: #fff4ea;
+      --card: rgba(255, 255, 255, 0.84);
+      --text: #4d4038;
+      --text-soft: #6f6159;
+      --primary: #d89d7d;
+      --primary-dark: #bf7e58;
+      --accent: #d7eadf;
+      --line: rgba(77, 64, 56, 0.1);
+      --shadow: 0 14px 35px rgba(99, 74, 58, 0.12);
+      --radius: 22px;
+      --max: 1180px;
+      --header-h: 72px;
+      --footer-h: 55px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(247, 242, 255, 0.58) 0 220px, transparent 380px),
+        radial-gradient(circle at 82% 78%, rgba(242, 236, 252, 0.42) 0 180px, transparent 320px),
+        radial-gradient(circle at 50% 20%, rgba(255,255,255,0.96) 0 120px, transparent 260px),
+        radial-gradient(circle at 12% 85%, rgba(246, 242, 250, 0.38) 0 110px, transparent 230px),
+        radial-gradient(circle at 88% 18%, rgba(250, 246, 255, 0.46) 0 110px, transparent 240px),
+        linear-gradient(135deg, #ffffff 0%, #fdfbff 42%, #fffaf6 74%, #ffffff 100%);
+      opacity: 0;
+      transition: opacity 0.45s ease;
+      animation: backgroundMood 14s ease-in-out infinite alternate;
+    }
+
+    body.page-visible {
+      opacity: 1;
+    }
+
+    body.page-fade-out {
+      opacity: 0;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -12%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body::before {
+      background:
+        radial-gradient(circle at 12% 22%, rgba(255,255,255,0.55) 0 26px, transparent 28px),
+        radial-gradient(circle at 26% 68%, rgba(244,236,255,0.42) 0 34px, transparent 36px),
+        radial-gradient(circle at 48% 20%, rgba(255,255,255,0.34) 0 20px, transparent 22px),
+        radial-gradient(circle at 64% 62%, rgba(238,226,255,0.44) 0 40px, transparent 44px),
+        radial-gradient(circle at 82% 30%, rgba(255,255,255,0.40) 0 28px, transparent 30px),
+        radial-gradient(circle at 90% 72%, rgba(246,238,255,0.34) 0 24px, transparent 26px);
+      filter: blur(10px);
+      opacity: 1;
+      animation: bokehFloat1 5s ease-in-out infinite alternate;
+    }
+
+    body::after {
+      background:
+        radial-gradient(circle at 18% 82%, rgba(255,255,255,0.34) 0 58px, transparent 60px),
+        radial-gradient(circle at 38% 42%, rgba(240,230,255,0.38) 0 48px, transparent 52px),
+        radial-gradient(circle at 58% 84%, rgba(255,255,255,0.28) 0 34px, transparent 38px),
+        radial-gradient(circle at 74% 18%, rgba(236,224,255,0.34) 0 56px, transparent 60px),
+        radial-gradient(circle at 92% 52%, rgba(255,255,255,0.26) 0 38px, transparent 42px);
+      filter: blur(16px);
+      opacity: 0.95;
+      animation: bokehFloat2 6.5s ease-in-out infinite alternate;
+    }
+
+    main::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 14% 24%, rgba(255,255,255,0.34) 0 8px, transparent 10px),
+        radial-gradient(circle at 24% 64%, rgba(255,255,255,0.28) 0 6px, transparent 8px),
+        radial-gradient(circle at 38% 28%, rgba(228,220,242,0.30) 0 9px, transparent 11px),
+        radial-gradient(circle at 52% 74%, rgba(255,255,255,0.24) 0 7px, transparent 9px),
+        radial-gradient(circle at 66% 34%, rgba(255,255,255,0.26) 0 8px, transparent 10px),
+        radial-gradient(circle at 78% 56%, rgba(228,220,242,0.24) 0 10px, transparent 12px),
+        radial-gradient(circle at 90% 26%, rgba(255,255,255,0.28) 0 7px, transparent 9px);
+      filter: blur(1px);
+      opacity: 0.9;
+      animation: magicSparkles 3.6s ease-in-out infinite alternate;
+    }
+
+    main {
+      height: calc(100vh - var(--header-h) - var(--footer-h));
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background:
+        radial-gradient(circle at 10% 35%, rgba(255, 220, 220, 0.18) 0 34px, transparent 62px),
+        radial-gradient(circle at 26% 72%, rgba(255, 240, 205, 0.18) 0 42px, transparent 72px),
+        radial-gradient(circle at 46% 28%, rgba(230, 220, 245, 0.18) 0 40px, transparent 70px),
+        radial-gradient(circle at 68% 68%, rgba(220, 236, 255, 0.16) 0 44px, transparent 76px),
+        radial-gradient(circle at 86% 34%, rgba(236, 226, 255, 0.16) 0 38px, transparent 68px),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.80), rgba(255, 248, 244, 0.72));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.52);
+      box-shadow: 0 10px 30px rgba(191, 126, 88, 0.08);
+      overflow: visible;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        100deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.10) 18%,
+        rgba(255, 255, 255, 0.42) 50%,
+        rgba(255, 255, 255, 0.10) 82%,
+        transparent 100%
+      );
+      transform: translateX(-140%);
+      animation: headerShimmer 3.8s linear infinite;
+      pointer-events: none;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.2rem;
+      padding: 0.5rem 0;
+      position: relative;
+      overflow: visible;
+      isolation: isolate;
+    }
+
+    .nav::after {
+      content: "";
+      position: absolute;
+      top: -10%;
+      left: -20%;
+      width: 70%;
+      height: 120%;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 210, 210, 0.08) 16%,
+        rgba(255, 238, 196, 0.16) 32%,
+        rgba(228, 220, 245, 0.22) 50%,
+        rgba(220, 236, 255, 0.16) 68%,
+        rgba(236, 226, 255, 0.10) 84%,
+        transparent 100%
+      );
+      filter: blur(10px);
+      transform: translateX(-120%);
+      animation: navShimmer 3.2s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+      padding-left: 0.4rem;
+    }
+
+    .brand-logo {
+      width: 240px;
+      height: auto;
+      display: block;
+      animation: pulseLogo 2.8s infinite ease-in-out;
+      transition: transform 0.25s ease, filter 0.25s ease;
+      transform-origin: center;
+      filter:
+        drop-shadow(0 8px 14px rgba(255,255,255,0.18))
+        drop-shadow(0 10px 18px rgba(216,157,125,0.12));
+    }
+
+    .brand:hover .brand-logo {
+      animation: none;
+      transform: scale(1.08);
+      filter:
+        drop-shadow(0 0 12px rgba(255,255,255,0.34))
+        drop-shadow(0 10px 18px rgba(216,157,125,0.18));
+    }
+
+    nav {
+      position: relative;
+      z-index: 2;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      display: inline-block;
+      padding: 0.38rem 0.7rem;
+      border-radius: 999px;
+      transition: 0.25s ease;
+      font-weight: 600;
+      color: var(--text-soft);
+      line-height: 1.2;
+      position: relative;
+      background: rgba(255,255,255,0.16);
+      overflow: hidden;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          100deg,
+          transparent 0%,
+          rgba(255,255,255,0.04) 24%,
+          rgba(255,255,255,0.28) 50%,
+          rgba(255,255,255,0.04) 76%,
+          transparent 100%
+        );
+      transform: translateX(-140%);
+      opacity: 0;
+    }
+
+    nav a:hover::after,
+    nav a.active::after {
+      opacity: 1;
+      animation: linkSparkle 2.2s ease-in-out infinite;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #b89a7a;
+      background: rgba(255,255,255,0.42);
+      box-shadow:
+        0 6px 16px rgba(216, 157, 125, 0.14),
+        0 0 10px rgba(255,255,255,0.16);
+    }
+
+    .hero {
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 2.2rem 0 1.4rem;
+    }
+
+    .service-card {
+  width: min(100%, 1080px);
+  margin: 0 auto;
+  padding: 1.55rem 1.9rem;
+  max-height: 620px;
+      overflow: hidden;
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.90),
+        rgba(255,255,255,0.82)
+      );
+      border: 1px solid rgba(255, 255, 255, 0.62);
+      border-radius: var(--radius);
+      box-shadow:
+        0 14px 35px rgba(99, 74, 58, 0.10),
+        0 4px 14px rgba(255,255,255,0.35) inset;
+      backdrop-filter: blur(10px);
+    }
+
+    .service-scroll {
+      max-height: 560px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 1rem;
+      padding-bottom: 3.5rem;
+      scrollbar-gutter: stable;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(77, 64, 56, 0.10) transparent;
+      transition: opacity 180ms ease, filter 180ms ease;
+    }
+
+    .service-scroll.switching {
+      opacity: 0;
+      filter: brightness(2.4);
+    }
+
+    .service-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .service-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .service-scroll::-webkit-scrollbar-thumb {
+      background: rgba(77, 64, 56, 0.10);
+      border-radius: 999px;
+    }
+
+    .service-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(77, 64, 56, 0.16);
+    }
+
+    h1, h2, h3 {
+      line-height: 1.18;
+    }
+
+    h1 {
+  font-size: clamp(1.25rem, 1.7vw, 1.9rem);
+  margin-bottom: 2.2rem;
+  text-align: center;
+}
+
+    .service-block {
+      padding: 1.1rem 1.15rem;
+      margin-bottom: 1rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.46);
+      border: 1px solid rgba(255,255,255,0.52);
+      box-shadow:
+        0 8px 22px rgba(99, 74, 58, 0.06),
+        inset 0 1px 8px rgba(255,255,255,0.22);
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    .service-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+    .service-head h2 {
+      font-size: clamp(1rem, 1.45vw, 1.3rem);
+      color: var(--text);
+      margin: 0;
+    }
+
+    .price-badge {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(216, 190, 165, 0.34);
+      color: #a97f60;
+      font-weight: 700;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      border: 1px solid rgba(77, 64, 56, 0.06);
+    }
+    .badge-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-self: end;
+  gap: 0.4rem;
+}
+
+.badge-stack .price-badge {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+    .service-block p {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+      margin-bottom: 0.65rem;
+    }
+
+    .service-block p:last-child { margin-bottom: 0; }
+
+    .service-block ul {
+      margin-left: 1.1rem;
+      margin-top: 0.45rem;
+      margin-bottom: 0.85rem;
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .service-block li {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+
+    .offer-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.55rem;
+      margin: -0.8rem 0 1.55rem;
+      flex-wrap: wrap;
+    }
+
+    .offer-tab,
+    .more-info-button,
+    .back-button {
+      appearance: none;
+      border: 1px solid rgba(77, 64, 56, 0.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.68);
+      color: var(--text);
+      cursor: pointer;
+      font: inherit;
+      transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .offer-tab {
+      width: auto;
+      min-width: 0;
+      padding: 0.48rem 0.9rem;
+      font-weight: 600;
+      font-size: 0.86rem;
+    }
+
+    .offer-tab:hover,
+    .offer-tab:focus-visible,
+    .offer-tab.active {
+      background: rgba(216, 190, 165, 0.46);
+      box-shadow: 0 7px 18px rgba(99, 74, 58, 0.08);
+      outline: none;
+    }
+
+    .offer-tab:active,
+    .more-info-button:active,
+    .back-button:active { transform: translateY(1px); }
+
+    .offer-panel[hidden],
+    .offer-summary[hidden],
+    .offer-more[hidden] { display: none; }
+
+    .offer-panel { padding-bottom: 2.4rem; }
+    .offer-panel.is-fading { animation: category-fade 420ms ease both; }
+
+    @keyframes category-fade {
+      0% { opacity: 0; filter: brightness(1.6); }
+      48% { opacity: 0.18; filter: brightness(1.9); }
+      100% { opacity: 1; filter: brightness(1); }
+    }
+
+    .offer-more.is-entering { animation: offer-slide-in 240ms ease both; }
+
+    @keyframes offer-slide-in {
+      from { opacity: 0; transform: translateX(22px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .more-info-button {
+      padding: 0.35rem 0.75rem;
+      background: rgba(215, 234, 223, 0.62);
+      color: #617769;
+      font-size: 0.84rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .back-button {
+      margin-bottom: 1rem;
+      padding: 0.45rem 0.85rem;
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+
+    .service-block strong { font-weight: 600; }
+
+    .service-note {
+  color: var(--text-soft);
+  font-size: 0.88rem;
+  max-width: 760px;
+}
+
+    .discount-block {
+      background: linear-gradient(135deg, rgba(255, 247, 242, 0.78), rgba(215, 234, 223, 0.4));
+      border-color: rgba(216, 157, 125, 0.18);
+    }
+
+    .offer-subsection {
+      margin-top: 1.2rem;
+      padding-top: 1.15rem;
+      border-top: 1px solid rgba(77, 64, 56, 0.1);
+    }
+
+    .offer-subsection h3 {
+      margin-bottom: 0.8rem;
+      color: var(--text);
+      font-size: clamp(0.98rem, 1.35vw, 1.2rem);
+    }
+
+    footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1200;
+      height: var(--footer-h);
+      border-top: 1px solid var(--line);
+      color: var(--text-soft);
+      font-size: 0.78rem;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      height: var(--footer-h);
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .footer-inner div,
+    .footer-inner a {
+      line-height: 1;
+      margin: 0;
+      padding: 0;
+    }
+
+    .footer-inner a {
+      color: var(--text-soft);
+      font-weight: 600;
+    }
+
+    .footer-inner a:hover {
+      color: #b89a7a;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(52, 39, 30, 0.34);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.25s ease;
+      z-index: 5000;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .overlay-box {
+      position: relative;
+      width: min(100%, 560px);
+      background: rgba(255, 250, 245, 0.82);
+      border: 1px solid rgba(255,255,255,0.48);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.16),
+        inset 0 1px 10px rgba(255,255,255,0.35);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .overlay-box h2 {
+      margin-bottom: 1rem;
+    }
+
+    .overlay-close {
+      position: absolute;
+      top: 0.7rem;
+      right: 0.9rem;
+      border: none;
+      background: transparent;
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+      color: #4d4038;
+    }
+
+    @keyframes pulseLogo {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    @keyframes headerShimmer {
+      0% {
+        transform: translateX(-140%);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.3;
+      }
+      50% {
+        opacity: 0.75;
+      }
+      80% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateX(160%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes navShimmer {
+      0% {
+        transform: translateX(-120%);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.35;
+      }
+      50% {
+        opacity: 0.9;
+      }
+      85% {
+        opacity: 0.35;
+      }
+      100% {
+        transform: translateX(170%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes linkSparkle {
+      0% {
+        transform: translateX(-140%);
+      }
+      100% {
+        transform: translateX(160%);
+      }
+    }
+
+    @keyframes magicSparkles {
+      0% {
+        opacity: 0.45;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0.95;
+        transform: translateY(-8px) scale(1.08);
+      }
+    }
+
+    @keyframes backgroundMood {
+      0% {
+        filter: brightness(1) saturate(1);
+      }
+      50% {
+        filter: brightness(1.02) saturate(1.03);
+      }
+      100% {
+        filter: brightness(0.97) saturate(0.96);
+      }
+    }
+
+    @keyframes bokehFloat1 {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      100% {
+        transform: translate3d(-46px, -30px, 0) scale(1.12);
+      }
+    }
+
+    @keyframes bokehFloat2 {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      100% {
+        transform: translate3d(38px, 24px, 0) scale(1.14);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .brand-logo {
+        width: 210px;
+      }
+
+      .service-card {
+        max-height: none;
+      }
+
+      .service-scroll {
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --header-h: 150px;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.4rem 0;
+      }
+
+      .nav::after {
+        width: 70%;
+        left: 15%;
+      }
+
+      .brand {
+        justify-content: center;
+      }
+
+      .brand-logo {
+        width: 190px;
+      }
+
+      nav ul {
+        justify-content: center;
+        gap: 0.75rem;
+      }
+
+      nav a {
+        padding: 0.28rem 0.62rem;
+        font-size: 0.96rem;
+      }
+
+      .hero {
+        padding-top: 2.4rem;
+      }
+
+      .service-card {
+        padding: 1.25rem;
+      }
+
+      .service-head {
+        flex-direction: column;
+        gap: 0.55rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width: min(calc(100% - 1rem), var(--max));
+      }
+
+      .brand-logo {
+        width: 160px;
+      }
+
+      .hero {
+        padding-top: 2rem;
+      }
+
+      h1 {
+        font-size: clamp(1.1rem, 5vw, 1.4rem);
+      }
+
+      .footer-inner {
+        height: var(--footer-h);
+        min-height: var(--footer-h);
+        padding: 0;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.4rem;
+        white-space: nowrap;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="files/responsive.css">
+  <link rel="stylesheet" href="files/privacy.css">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="home.html" aria-label="Zurück zur Startseite">
+        <img class="brand-logo" src="files/Logo1.png" alt="Logo Tierpsychologie" />
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="philosophie.html">Philosophie</a></li>
+          <li><a href="qualifikationen.html">Qualifikationen</a></li>
+          <li><a class="active" href="aktuellesangebot.html">Aktuelles Angebot</a></li>
+          <li><a href="leistungenundpreise.html">Leistungen & Preise</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="service-card">
+          <h1>Aktuelles Angebot</h1>
+
+          <div class="offer-tabs" role="tablist" aria-label="Angebotsbereiche">
+            <button class="offer-tab active" id="tab-betreuung" type="button" role="tab" aria-selected="true" aria-controls="panel-betreuung" data-offer-tab="betreuung">Betreuung</button>
+            <button class="offer-tab" id="tab-beratung" type="button" role="tab" aria-selected="false" aria-controls="panel-beratung" data-offer-tab="beratung">Beratung</button>
+            <button class="offer-tab" id="tab-tierschutz" type="button" role="tab" aria-selected="false" aria-controls="panel-tierschutz" data-offer-tab="tierschutz">Für Tierschutz/Organisationen</button>
+          </div>
+
+          <div class="service-scroll">
+            <div class="service-block">
+              <div class="service-head">
+                <h2>Kennenlerntermin</h2>
+                <span class="price-badge">Kostenlos bis 20 Min.</span>
+              </div>
+              <p>Vor der ersten Betreuung findet ein persönliches Kennenlernen statt.</p>
+              <p><strong>Dabei besprechen wir:</strong></p>
+              <ul>
+                <li>die Bedürfnisse Ihres Tieres</li>
+                <li>Fütterung und Versorgung</li>
+                <li>Besonderheiten und Gewohnheiten</li>
+                <li>Zugang zur Wohnung</li>
+                <li>Notfallkontakte</li>
+                <li>gewünschte Betreuungszeiten</li>
+                <li>individuelle Wünsche</li>
+              </ul>
+              <p><strong>Kostenlos bis 20 Min.</strong></p>
+            </div>
+
+            <div class="service-block">
+              <div class="service-head">
+                <h2>Vor- und Nachkontrollen bei Tiervermittlungen</h2>
+                <div class="badge-stack">
+  <span class="price-badge">aktuell kostenlos</span>
+</div>
+              </div>
+              <p>Eine verantwortungsvolle Tiervermittlung endet nicht mit der Übergabe des Tieres. Damit Tier und zukünftiges Zuhause möglichst gut zusammenpassen, biete ich <strong>Vor- und Nachkontrollen im Rahmen von Tiervermittlungen</strong> an.</p>
+              <p>Mein Angebot richtet sich insbesondere an <strong>Tierschutzvereine, Tierschutzorganisationen und private Personen</strong>, die Hunde, Katzen oder Kleintiere verantwortungsvoll vermitteln.</p>
+
+              <div class="offer-subsection">
+                <h3>Vorkontrolle</h3>
+                <p>Vor der Vermittlung besuche ich die potenzielle Adoptivfamilie bzw. das zukünftige Zuhause und verschaffe mir einen persönlichen Eindruck von den Haltungsbedingungen.</p>
+                <p><strong>Dabei schaue ich unter anderem auf:</strong></p>
+                <ul>
+                  <li>die allgemeine Wohn- und Haltungssituation</li>
+                  <li>vorhandene Möglichkeiten für das Tier</li>
+                  <li>Sicherheit und tiergerechte Gestaltung des Umfelds</li>
+                  <li>den geplanten Tagesablauf</li>
+                  <li>Vorstellungen und Erwartungen der zukünftigen Halter</li>
+                  <li>bereits vorhandene Tiere</li>
+                  <li>vorhandene Erfahrung im Umgang mit Tieren</li>
+                  <li>die individuellen Bedürfnisse des zu vermittelnden Tieres</li>
+                </ul>
+                <p>Im Anschluss erstelle ich einen <strong>ausführlichen Bericht über den Vorbesuch</strong>. Dieser kann der vermittelnden Person, dem Tierschutzverein oder der zuständigen Organisation als Grundlage für die weitere Vermittlungsentscheidung dienen.</p>
+              </div>
+
+              <div class="offer-subsection">
+                <h3>Nachkontrolle</h3>
+                <p>Auf Wunsch begleite ich die Vermittlung auch nach dem Einzug des Tieres.</p>
+                <p>Die Nachkontrolle kann <strong>gemeinsam mit den Haltern oder auch ohne deren Anwesenheit</strong> durchgeführt werden – je nachdem, was für die jeweilige Vermittlung, den Tierschutzverein oder die vermittelnde Person sinnvoll und gewünscht ist.</p>
+                <p><strong>Bei einer Nachkontrolle kann beispielsweise geschaut werden auf:</strong></p>
+                <ul>
+                  <li>die Eingewöhnung des Tieres</li>
+                  <li>das Zusammenleben von Mensch und Tier</li>
+                  <li>Haltung und Versorgung</li>
+                  <li>die bisherige Entwicklung seit der Vermittlung</li>
+                  <li>die Umsetzung der vereinbarten Haltungsbedingungen</li>
+                  <li>offene Fragen oder Unsicherheiten</li>
+                  <li>das allgemeine Wohlbefinden des Tieres</li>
+                </ul>
+                <p>Auch nach dem Nachbesuch erhalten Sie einen <strong>ausführlichen Bericht</strong>, in dem meine Beobachtungen und Eindrücke festgehalten werden.</p>
+              </div>
+
+              <div class="offer-subsection">
+                <h3>Langjährige Erfahrung im Tierschutz</h3>
+                <p>Ich führe bereits seit <strong>15 Jahren Vor- und Nachkontrollen für verschiedene Tierschutzvereine</strong> durch und verfüge dadurch über umfangreiche praktische Erfahrung in diesem Bereich.</p>
+                <p>Mir ist dabei wichtig, mir vor Ort ein möglichst umfassendes Bild von der jeweiligen Situation zu machen und meine Beobachtungen anschließend nachvollziehbar und sorgfältig in einem Bericht festzuhalten.</p>
+                <p>Aktuell biete ich die Vor- und Nachkontrollen noch kostenlos an.</p>
+              </div>
+            </div>
+
+            <div class="service-block">
+              <div class="service-head">
+                <h2>Hundebetreuung bei Ihnen zu Hause</h2>
+                <span class="price-badge">ab 15 €</span>
+              </div>
+              <p>Ihr Hund bleibt in seiner vertrauten Umgebung und bekommt die Aufmerksamkeit und Betreuung, die er braucht – individuell nach seinen Gewohnheiten und Ihren Wünschen.</p>
+              <p><strong>In der Betreuung enthalten sind je nach Bedarf:</strong></p>
+              <ul>
+                <li>Fütterung und Bereitstellung von frischem Wasser</li>
+                <li>Spaziergänge, angepasst an Alter, Bedürfnisse und Gewohnheiten Ihres Hundes</li>
+                <li>Spielen und Beschäftigung, je nach Lust und Energie Ihres Hundes</li>
+                <li>Zuwendung und Gesellschaft</li>
+                <li>Kontrolle des Allgemeinzustandes und Beobachtung Ihres Hundes</li>
+                <li>Betreuung in der vertrauten häuslichen Umgebung</li>
+                <li>Rückmeldung an Sie nach dem Besuch, auf Wunsch gerne mit Fotos oder kurzen Nachrichten</li>
+              </ul>
+              <p>Mir ist wichtig, dass sich Ihr Hund während Ihrer Abwesenheit sicher, wohl und gut aufgehoben fühlt. Deshalb richte ich mich so weit wie möglich nach seinem gewohnten Tagesablauf und seinen individuellen Bedürfnissen.</p>
+              <p><strong>Preis:</strong><br>30 Minuten – 15 €<br>60 Minuten – 25 €</p>
+              <p class="service-note">Bei mehreren Hunden oder einem besonderen Betreuungsaufwand erstelle ich Ihnen gerne ein individuelles Angebot.</p>
+              <p>Für längere Betreuungszeiten biete ich Ihnen zum Einstieg folgende Pauschalpreise an:</p>
+              <p><strong>3 Stunden Hundebetreuung am Stück – 45 €<br>4 Stunden Hundebetreuung am Stück – 55 €</strong></p>
+            </div>
+
+            <div class="service-block">
+              <div class="service-head">
+                <h2>Katzenbetreuung bei Ihnen zu Hause</h2>
+                <span class="price-badge">20 € · 30–60 Min.</span>
+              </div>
+              <p>Ihre Katze bleibt während Ihrer Abwesenheit in ihrer vertrauten Umgebung und wird dort liebevoll und zuverlässig versorgt. Ich richte mich dabei nach den gewohnten Abläufen und den individuellen Bedürfnissen Ihrer Katze.</p>
+              <p><strong>In der Betreuung enthalten sind je nach Bedarf:</strong></p>
+              <ul>
+                <li>Fütterung und Bereitstellung von frischem Wasser</li>
+                <li>Reinigung und Versorgung der Katzentoilette</li>
+                <li>Reinigung der Futternäpfe und der üblichen Versorgungsbereiche</li>
+                <li>Beschäftigung und Spielen, wenn Ihre Katze dies möchte</li>
+                <li>Streicheleinheiten und Zuwendung – ganz nach den Vorlieben Ihrer Katze</li>
+                <li>Kontrolle des Tieres und Beobachtung des Allgemeinzustandes</li>
+                <li>Kontrolle der Wohnung bzw. der unmittelbaren Umgebung des Tieres</li>
+                <li>Lüften nach Absprache</li>
+                <li>Pflanzen gießen oder Briefkasten leeren nach vorheriger Vereinbarung</li>
+                <li>Rückmeldung an Sie nach dem Besuch, auf Wunsch gerne mit Fotos oder kurzen Nachrichten</li>
+              </ul>
+              <p>Mir ist wichtig, dass Ihre Katze sich auch während Ihrer Abwesenheit sicher und wohl fühlt. Deshalb findet die Betreuung in ihrer gewohnten Umgebung statt und wird individuell auf ihre Bedürfnisse abgestimmt.</p>
+              <p><strong>Preis: 30–60 Minuten – 20 €</strong></p>
+              <p class="service-note">Bei mehreren Katzen oder einem besonderen Betreuungsaufwand erstelle ich Ihnen gerne ein individuelles Angebot.</p>
+            </div>
+
+            <div class="service-block">
+              <div class="service-head">
+                <h2>Kleintierbetreuung bei Ihnen zu Hause</h2>
+                <span class="price-badge">15 € · 30 Min.</span>
+              </div>
+              <p>Auch kleine Tiere brauchen während Ihrer Abwesenheit eine zuverlässige und liebevolle Betreuung. Deshalb kümmere ich mich bei Ihnen zu Hause um Ihre Kleintiere – in ihrer vertrauten Umgebung und nach Ihren individuellen Wünschen.</p>
+              <p><strong>Ich betreue unter anderem:</strong></p>
+              <ul>
+                <li>Kaninchen</li>
+                <li>Meerschweinchen</li>
+                <li>Hamster</li>
+                <li>Ratten</li>
+                <li>Mäuse</li>
+              </ul>
+              <p><strong>In der Betreuung enthalten sind je nach Bedarf:</strong></p>
+              <ul>
+                <li>Fütterung und Bereitstellung von frischem Wasser</li>
+                <li>Reinigung von Näpfen und den üblichen Versorgungsbereichen</li>
+                <li>Versorgung mit Heu, Frischfutter oder anderem vereinbarten Futter</li>
+                <li>Reinigung bzw. Teilreinigung des Geheges nach Absprache</li>
+                <li>Beschäftigung und Zuwendung</li>
+                <li>Kontrolle des Tieres und Beobachtung des Allgemeinzustandes</li>
+                <li>Kontrolle der Umgebung und des Geheges</li>
+                <li>Rückmeldung an Sie nach dem Besuch, auf Wunsch gerne mit Fotos oder kurzen Nachrichten</li>
+              </ul>
+              <p>Mir ist wichtig, dass Ihre Tiere auch während Ihrer Abwesenheit gut versorgt sind und möglichst wenig von ihrem gewohnten Alltag abweicht.</p>
+              <p><strong>Preis: 30 Minuten – 15 €</strong></p>
+            </div>
+
+            <div class="service-block">
+              <div class="service-head">
+                <h2>Themenberatung</h2>
+                <span class="price-badge">25 € · 30 Min.</span>
+              </div>
+              <p>Sie haben eine konkrete Frage zu Ihrem Tier?</p>
+              <p><strong>Einzelberatung – 30 Minuten: 25 €</strong></p>
+              <p><strong>Mögliche Themen sind beispielsweise:</strong></p>
+              <ul>
+                <li>Stubenreinheit – allgemeine Information</li>
+                <li>Beschäftigung</li>
+                <li>Tagesablauf</li>
+                <li>Haltung</li>
+                <li>Versorgung</li>
+                <li>Pflege</li>
+                <li>Umgang mit Veränderungen im Alltag</li>
+                <li>Vorbereitung auf einen Urlaub oder eine Abwesenheit</li>
+                <li>Zusammenleben mehrerer Tiere</li>
+              </ul>
+              <p class="service-note">Bei Themen, die eine tiermedizinische Diagnose, Behandlung oder Training erfordern, verweise ich an die jeweils zuständige Fachperson.</p>
+            </div>
+
+            <div class="service-block">
+              <div class="service-head">
+                <h2>Geschirr und Leinenberatung</h2>
+                <span class="price-badge">10 € · ca. 30 Min.</span>
+              </div>
+              <p><strong>Dabei berücksichtige ich insbesondere:</strong></p>
+              <ul>
+                <li>Passform</li>
+                <li>Sitz und Einstellung</li>
+                <li>Bewegungsfreiheit</li>
+                <li>mögliche Druck- und Scheuerstellen</li>
+                <li>Körperbau des Hundes</li>
+                <li>Fell und individuelle Besonderheiten</li>
+                <li>Alltag und Verwendungszweck</li>
+              </ul>
+              <p class="service-note">Bei gesundheitlichen Beschwerden oder Schmerzen sollte zusätzlich eine tierärztliche bzw. entsprechend fachkundige Abklärung erfolgen.</p>
+            </div>
+
+            <div class="service-block">
+              <div class="service-head">
+                <h2>Allgemeine Tierhaltungsberatung</h2>
+                <span class="price-badge">ab 35 €</span>
+              </div>
+              <p class="service-note">Für Hunde, Katzen und Kleintiere</p>
+              <p><strong>30 Minuten – 35 €<br>60 Minuten – 60 €</strong></p>
+              <p><strong>Beratung und Information unter anderem zu:</strong></p>
+              <ul>
+                <li>artgerechter Haltung</li>
+                <li>Beschäftigung und Auslastung</li>
+                <li>Tagesstruktur und Routinen</li>
+                <li>tiergerechter Gestaltung des Zuhauses</li>
+                <li>allgemeiner Pflege und Versorgung</li>
+                <li>Bedürfnissen von Hund, Katze und Kleintieren</li>
+                <li>Alltag mit dem Tier</li>
+              </ul>
+              <p class="service-note">Die Beratung dient der Information und Orientierung und ersetzt keine tierärztliche Untersuchung, Diagnose oder Behandlung.</p>
+
+              <div class="offer-subsection">
+                <h3>Beratung bei der Auswahl des passenden Haustieres</h3>
+                <p>Sie möchten sich ein Haustier anschaffen, wissen aber noch nicht genau, welches Tier am besten zu Ihnen und Ihrem Alltag passt?</p>
+                <p>Gerne unterstütze ich Sie dabei, sich einen Überblick zu verschaffen und die verschiedenen Möglichkeiten miteinander zu vergleichen.</p>
+                <p><strong>Gemeinsam schauen wir unter anderem auf:</strong></p>
+                <ul>
+                  <li>Ihre persönliche Lebenssituation und Ihren Alltag</li>
+                  <li>den zeitlichen Aufwand</li>
+                  <li>Platz- und Haltungsbedingungen</li>
+                  <li>Bedürfnisse und Ansprüche verschiedener Tierarten</li>
+                  <li>laufende Kosten und notwendige Ausstattung</li>
+                  <li>Pflege- und Betreuungsaufwand</li>
+                  <li>die Frage, ob Hund, Katze oder ein Kleintier besser zu Ihnen passen könnte</li>
+                  <li>welche Verantwortung und Verpflichtungen mit der Haltung verbunden sind</li>
+                </ul>
+                <p>Mir ist wichtig, dass die Anschaffung eines Tieres gut überlegt ist und <strong>Mensch und Tier möglichst gut zusammenpassen</strong>.</p>
+                <p>Die Beratung soll Ihnen dabei helfen, eine bewusste und gut informierte Entscheidung zu treffen. Die endgültige Entscheidung für ein bestimmtes Tier treffen selbstverständlich Sie selbst.</p>
+                <p><strong>Preis: Beratung ca. 60 Minuten – 35 €</strong></p>
+                <p>Auf Wunsch können wir die Beratung auch auf einen konkreten Tierwunsch ausrichten und gemeinsam besprechen, worauf Sie bei der Haltung und den jeweiligen Bedürfnissen achten sollten.</p>
+              </div>
+            </div>
+
+            <div class="service-block">
+              <div class="service-head">
+                <h2>Notfallbetreuung</h2>
+                <span class="price-badge">nach Verfügbarkeit</span>
+              </div>
+              <p>Manchmal kommt im Leben alles anders als geplant.</p>
+              <p>Ein plötzlicher Krankenhausaufenthalt, ein unerwarteter Termin oder eine andere dringende Situation kann dazu führen, dass die Betreuung Ihres Tieres kurzfristig organisiert werden muss.</p>
+              <p><strong>Genau für solche Fälle möchte ich da sein.</strong></p>
+              <p>Wenn Sie ganz kurzfristig eine Betreuung für Ihren Hund, Ihre Katze oder Ihr Kleintier benötigen, können Sie sich gerne bei mir melden. Wenn es meine zeitlichen Möglichkeiten zulassen, versuche ich <strong>so schnell und unkompliziert wie möglich einzuspringen</strong>.</p>
+              <p><strong>Die Notfallbetreuung kann beispielsweise kurzfristig erforderlich sein bei:</strong></p>
+              <ul>
+                <li>einem unerwarteten Krankenhausaufenthalt</li>
+                <li>einer plötzlich notwendigen Abwesenheit</li>
+                <li>einem familiären Notfall</li>
+                <li>einer kurzfristigen Reise oder einem dringenden Termin</li>
+                <li>anderen unvorhergesehenen Situationen, in denen Ihr Tier nicht alleine bleiben kann</li>
+              </ul>
+              <p>Ob eine kurzfristige Betreuung möglich ist, hängt immer von meiner aktuellen Verfügbarkeit, der benötigten Betreuungsdauer und den Umständen ab. <strong>Ich kann daher keine Notfallbetreuung zu jeder Zeit garantieren.</strong></p>
+              <p>Rufen Sie mich im Notfall einfach an. Sollten Sie mich nicht direkt erreichen, können Sie mir gerne eine SMS oder E-Mail hinterlassen. Ich melde mich schnellstmöglich zurück.</p>
+              <div class="offer-subsection">
+                <h3>Preise</h3>
+                <p>Die regulären Preise meiner Tierbetreuung gelten auch für kurzfristige Anfragen.</p>
+                <p>Bei besonders kurzfristigen Einsätzen kann je nach Aufwand und Uhrzeit ein Notfallzuschlag von 30 Euro anfallen. Dies bespreche ich vor Beginn der Betreuung transparent mit Ihnen.</p>
+              </div>
+              <p>Wenn es plötzlich schwierig wird, möchte ich versuchen, Ihnen und Ihrem Tier unkompliziert zu helfen.</p>
+            </div>
+
+            <div class="service-block discount-block">
+              <div class="service-head">
+                <h2>Weil jedes Tier liebevolle Betreuung verdient</h2>
+              </div>
+              <p>Mir ist wichtig, dass eine gute und liebevolle Betreuung nicht davon abhängt, wie groß das eigene Budget ist.</p>
+              <p>Deshalb möchte ich StudentInnen, RentnerInnen sowie BezieherInnen von Bürgergeld einen persönlichen Rabatt auf meine regulären Preise anbieten.</p>
+              <p>Den Rabatt erhalten Sie ganz unkompliziert gegen Vorlage eines entsprechenden Nachweises.</p>
+              <p>Sprechen Sie mich einfach darauf an – ganz ohne unangenehme Fragen. Ihre Angaben werden selbstverständlich vertraulich und respektvoll behandelt.</p>
+              <p>Denn für mich zählt vor allem eines:</p>
+              <p>Ihr Tier soll die Betreuung bekommen, die es verdient.</p>
+            </div>
+
+            <div class="service-block">
+              <div class="service-head">
+                <h2>Anfahrt</h2>
+                <span class="price-badge">bis 5 km inklusive</span>
+              </div>
+              <p><strong>Bis 5 km Entfernung: inklusive</strong></p>
+              <p>Danach: <strong>0,50 € pro zusätzlichem Kilometer</strong></p>
+              <p class="service-note">Die Entfernung wird ab meinem Standort berechnet.</p>
+            </div>
+
+            <div class="service-block">
+              <div class="service-head">
+                <h2>Sonderzeiten</h2>
+              </div>
+              <p>Betreuung an Sonn- und Feiertagen: <strong>+5 € pro Besuch</strong></p>
+              <p>Kurzfristige Buchungen innerhalb von 24 Stunden: <strong>+5 €</strong></p>
+              <p class="service-note">Für besonders aufwendige oder zeitintensive Betreuungen erstelle ich ein individuelles Angebot.</p>
+            </div>
+
+            <div class="service-block">
+              <div class="service-head">
+                <h2>Terminabsagen</h2>
+              </div>
+              <p>Damit ich meine Termine gut planen und anderen Tierhaltern freie Zeiten anbieten kann, bitte ich Sie, vereinbarte Termine <strong>mindestens 24 Stunden vorher abzusagen</strong>, falls Sie den Termin nicht wahrnehmen können.</p>
+              <p>Bei einer Absage <strong>weniger als 24 Stunden vor dem vereinbarten Termin</strong> oder bei Nichterscheinen muss ich leider den <strong>vollen Preis der gebuchten Leistung</strong> berechnen.</p>
+              <p>Vielen Dank für Ihr Verständnis und Ihre Rücksichtnahme.</p>
+            </div>
+
+            <div class="service-block" id="offer-preise">
+              <div class="service-head"><h2>Preise</h2></div>
+              <p>Die regulären Preise meiner Tierbetreuung gelten auch für kurzfristige Anfragen.</p>
+              <p>Bei besonders kurzfristigen Einsätzen kann je nach Aufwand und Uhrzeit ein Notfallzuschlag von 30 Euro anfallen. Dies bespreche ich vor Beginn der Betreuung transparent mit Ihnen.</p>
+              <p>Wenn es plötzlich schwierig wird, möchte ich versuchen, Ihnen und Ihrem Tier unkompliziert zu helfen.</p>
+            </div>
+
+            <div class="service-block" id="offer-hundeeinschaetzung">
+              <div class="service-head">
+                <h2>Einmalige fachliche Einschätzung Ihres Hundes</h2>
+                <span class="price-badge">30 €</span>
+              </div>
+              <p>Eine fachliche Einschätzung Ihres Hundes und seiner aktuellen Situation.</p>
+            </div>
+
+            <div class="service-block" id="offer-haustierauswahl">
+              <div class="service-head">
+                <h2>Beratung bei der Auswahl des passenden Haustieres</h2>
+                <span class="price-badge">35 € · ca. 60 Min.</span>
+              </div>
+              <p>Sie möchten sich ein Haustier anschaffen, wissen aber noch nicht genau, welches Tier am besten zu Ihnen und Ihrem Alltag passt?</p>
+              <p>Gerne unterstütze ich Sie dabei, sich einen Überblick zu verschaffen und die verschiedenen Möglichkeiten miteinander zu vergleichen.</p>
+              <p>Gemeinsam schauen wir unter anderem auf:</p>
+              <ul>
+                <li>Ihre persönliche Lebenssituation und Ihren Alltag</li>
+                <li>den zeitlichen Aufwand</li>
+                <li>Platz- und Haltungsbedingungen</li>
+                <li>Bedürfnisse und Ansprüche verschiedener Tierarten</li>
+                <li>laufende Kosten und notwendige Ausstattung</li>
+                <li>Pflege- und Betreuungsaufwand</li>
+                <li>die Frage, ob Hund, Katze oder ein Kleintier besser zu Ihnen passen könnte</li>
+                <li>welche Verantwortung und Verpflichtungen mit der Haltung verbunden sind</li>
+              </ul>
+              <p>Mir ist wichtig, dass die Anschaffung eines Tieres gut überlegt ist und Mensch und Tier möglichst gut zusammenpassen.</p>
+              <p>Die Beratung soll Ihnen dabei helfen, eine bewusste und gut informierte Entscheidung zu treffen. Die endgültige Entscheidung für ein bestimmtes Tier treffen selbstverständlich Sie selbst.</p>
+              <p>Auf Wunsch können wir die Beratung auch auf einen konkreten Tierwunsch ausrichten und gemeinsam besprechen, worauf Sie bei der Haltung und den jeweiligen Bedürfnissen achten sollten.</p>
+            </div>
+
+            <div class="service-block" id="offer-ankommen">
+              <div class="offer-summary">
+                <div class="service-head">
+                  <h2>Ankommen und Vertrauen aufbauen</h2>
+                  <div class="badge-stack">
+                    <span class="price-badge">144 €</span>
+                    <button class="more-info-button" type="button">Mehr Infos z. Angebot</button>
+                  </div>
+                </div>
+                <p>Spezialangebot für Hunde aus dem Ausland sowie generell ängstliche und unsichere Hunde.</p>
+                <p>Ein neuer Start. Ein neues Leben. Und jede Menge neuer Eindrücke für Ihren Hund.</p>
+                <p>Hunde aus dem Ausland brauchen oft mehr als nur Training – sie brauchen Zeit, Verständnis und eine sichere Begleitung, um wirklich anzukommen.</p>
+                <p>In meiner fünfzehnjährigen Tätigkeit im In- und Auslandstierschutz habe ich viele Adoptanten betreut und weiß, wie wichtig und sinnvoll eine fachliche Begleitung gerade am Anfang ist. Sie gibt dem Halter Sicherheit im Handling und schafft somit die Basis für eine stabile und vertrauensvolle Mensch-Hund-Beziehung.</p>
+                <p>Ich begleite Sie in den ersten wichtigen Wochen – Schritt für Schritt, in Ihrem Tempo. Ohne Druck. Dafür mit Klarheit, Struktur und ganz viel Verständnis für Ihren Hund.</p>
+                <p>Enthalten sind:</p>
+                <ul>
+                  <li>bis zu 6 Einzeltermine, bei Bedarf auch mehr, in den ersten 3 Wochen nach Ankunft des Hundes</li>
+                  <li>Beratung zu Sicherheitsgeschirr, richtiger Sicherung und Spaziergängen</li>
+                  <li>Unterstützung bei der Eingewöhnung und im Alltag</li>
+                  <li>Beratung zu Pflege, Baden, Futter und den ersten Tierarztbesuchen</li>
+                  <li>Einschätzung von Verhalten und möglichen Auffälligkeiten</li>
+                  <li>Besprechung, wann Training sinnvoll ist – bei Bedarf vermittle ich an eine passende Kollegin</li>
+                  <li>Begleitung zum ersten Tierarztbesuch auf Wunsch</li>
+                  <li>Begleitung bei den ersten Spaziergängen auf Wunsch</li>
+                  <li>Persönliche Ansprechpartnerin für Fragen, die während der ersten Wochen entstehen</li>
+                  <li>Bei Bedarf Vermittlung an weitere Fachpersonen, z. B. Ernährungsberatung oder HundetrainerInnen</li>
+                </ul>
+              </div>
+
+              <div class="offer-more" hidden>
+                <button class="back-button" type="button">← Zurück zum Angebot</button>
+                <h2>Mehr Infos zum Angebot</h2>
+                <p>Ein Hund aus dem Ausland zieht ein – und plötzlich gibt es unglaublich viele Fragen.</p>
+                <ul>
+                  <li>Wie sichere ich meinen Hund richtig?</li>
+                  <li>Wann darf ich zum ersten Mal mit ihm spazieren gehen?</li>
+                  <li>Wann ist der richtige Zeitpunkt für den ersten Tierarztbesuch?</li>
+                  <li>Was mache ich, wenn mein Hund Angst hat, sich versteckt oder plötzlich ganz anders reagiert als erwartet?</li>
+                  <li>Wann darf ich mit dem Training beginnen?</li>
+                  <li>Und was ist eigentlich völlig normales Verhalten in der Eingewöhnungszeit?</li>
+                </ul>
+                <p>Gerade die ersten Wochen können für Mensch und Hund aufregend, wunderschön, aber auch herausfordernd sein.</p>
+                <p>Mit meinem „Ankommen“-Paket begleite ich Sie und Ihren Hund während der ersten drei Wochen und stehe Ihnen bei den vielen kleinen und großen Fragen zur Seite.</p>
+                <h3>Gemeinsam schaffen wir einen sicheren Start</h3>
+                <p>In den ersten Wochen geht es nicht darum, dass Ihr Hund möglichst schnell „funktioniert“. Es geht darum, Vertrauen aufzubauen, Sicherheit zu schaffen und Ihren Hund in seinem Tempo in seinem neuen Leben ankommen zu lassen.</p>
+                <p>Dabei schauen wir individuell auf Sie als Mensch-Hund-Team und darauf, was Ihr Hund gerade braucht.</p>
+                <h3>Das beinhaltet Ihr 3-Wochen-Paket</h3>
+                <h3>Bis zu 6 persönliche Termine innerhalb von 3 Wochen</h3>
+                <h3>Sicherheit &amp; Management</h3>
+                <ul>
+                  <li>Beratung zum passenden Sicherheitsgeschirr</li>
+                  <li>richtiges Anlegen und Einstellen</li>
+                  <li>sichere Gestaltung der ersten Spaziergänge</li>
+                  <li>Tipps zur Sicherung im Alltag und zu Hause</li>
+                  <li>Einschätzung möglicher Situationen, in denen Ihr Hund sich erschrecken oder flüchten könnte</li>
+                </ul>
+                <h3>Ankommen im neuen Zuhause</h3>
+                <p>Wir besprechen unter anderem:</p>
+                <ul>
+                  <li>Wie viel Ruhe braucht mein Hund?</li>
+                  <li>Wie gestalte ich die ersten Tage?</li>
+                  <li>Wann darf ich Besuch empfangen?</li>
+                  <li>Wie gehe ich mit Unsicherheit oder Ängsten um?</li>
+                  <li>Was mache ich, wenn mein Hund sich zurückzieht?</li>
+                  <li>Wie kann ich Vertrauen und Orientierung aufbauen?</li>
+                </ul>
+                <h3>Der erste Tierarztbesuch</h3>
+                <p>Wenn Sie möchten, begleite ich Sie und Ihren Hund auch zum ersten Tierarzttermin und unterstütze Sie dabei, die Situation möglichst stressarm zu gestalten.</p>
+                <h3>Ernährung &amp; Pflege</h3>
+                <p>Auch die ganz alltäglichen Fragen dürfen Raum bekommen:</p>
+                <ul>
+                  <li>Wann sollte mein Hund das erste Mal gebadet werden?</li>
+                  <li>Was mache ich, wenn mein Hund unangenehm riecht?</li>
+                  <li>Welche Pflege braucht er?</li>
+                  <li>Wann sollte ich die Ernährung umstellen?</li>
+                  <li>Welches Futter ist geeignet?</li>
+                </ul>
+                <p>Bei speziellen Ernährungsfragen kann ich Sie bei Bedarf an eine qualifizierte Ernährungsberatung weiterleiten.</p>
+                <h3>Verhalten verstehen</h3>
+                <p>Ein Hund aus dem Ausland bringt seine eigene Geschichte mit.</p>
+                <p>Gemeinsam schauen wir deshalb genau hin:</p>
+                <ul>
+                  <li>Was ist normales Eingewöhnungsverhalten?</li>
+                  <li>Was könnte auf Überforderung oder Unsicherheit hindeuten?</li>
+                  <li>Welche Verhaltensweisen sollten wir zunächst beobachten?</li>
+                  <li>Und wann ist es sinnvoll, gezielt mit Training zu beginnen?</li>
+                </ul>
+                <p>Dabei geht es nicht darum, Ihren Hund vorschnell zu beurteilen oder zu „problematisieren“, sondern darum, sein Verhalten zu verstehen und Ihnen einen guten gemeinsamen Start zu ermöglichen.</p>
+                <h3>Training &amp; Hundeschule</h3>
+                <ul>
+                  <li>Wann ist der richtige Zeitpunkt für Training?</li>
+                  <li>Brauchen Sie eine Hundeschule?</li>
+                  <li>Einzeltraining?</li>
+                  <li>Oder zunächst einfach ganz viel Ruhe und Sicherheit?</li>
+                </ul>
+                <p class="offer-more-closing">Ich helfe Ihnen dabei, den passenden Weg für Sie zu finden und empfehle bei Bedarf geeignete weitere Fachstellen.<br>Während der drei Wochen können Sie sich mit Ihren Fragen an mich wenden. Denn gerade am Anfang entstehen viele Fragen oft erst im Alltag.<br>Sie müssen nicht erst wochenlang überlegen, ob eine Situation „normal“ ist oder ob Sie etwas falsch machen. Sie dürfen fragen.</p>
+              </div>
+            </div>
+
+            <div class="service-block" id="offer-kleintierberatung">
+              <div class="service-head"><h2>Kleintierberatung</h2><span class="price-badge">ab 25 €</span></div>
+              <p>Für Kaninchen, Meerschweinchen, Mäuse und Ratten.</p>
+              <ul>
+                <li>Verhaltensberatung – 49 €</li>
+                <li>Begleitung und Betreuung vor und während der Anschaffung – 35 €</li>
+                <li>Beratung zur Gehegegestaltung – 25 €</li>
+              </ul>
+            </div>
+
+            <div class="service-block" id="offer-adoption">
+              <div class="service-head"><h2>Spezielle Beratung zum Thema Adoption | Hund aus dem Ausland</h2><span class="price-badge">25 €</span></div>
+              <p>Diese Beratung hilft Ihnen dabei herauszufinden, ob ein Hund aus dem Ausland zu Ihnen, Ihrem Alltag und Ihren persönlichen Lebensumständen passt.</p>
+            </div>
+
+            <div class="service-block" id="offer-notfallberatung">
+              <div class="service-head"><h2>Notfall | Managementberatung</h2><span class="price-badge">15 €</span></div>
+              <p class="service-note service-subtitle">(auch telefonisch möglich)</p>
+              <p>Geeignet z. B. bei Hundebiss, Unfall oder Krankheit.</p>
+              <p>In akuten Situationen besprechen wir erste wichtige Schritte, mögliche Managementmaßnahmen und sinnvolle nächste Wege, um die Situation schnellstmöglich zu stabilisieren.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="overlay" id="impressum-overlay">
+    <div class="overlay-box">
+      <button class="overlay-close" id="close-impressum" aria-label="Impressum schließen">×</button>
+      <h2>Impressum</h2>
+      <div>
+        <p><strong>Tierpsychologie</strong></p>
+        <p>Pia Bortels</p>
+        <p>Alte Stöckener Str. 94</p>
+        <p>30149 Hannover</p>
+        <p>E-Mail: info@tierpsychologie-seelenbund.de</p>
+        <p>Telefon: 0176 87925330</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container footer-inner">
+     <div class="footer-copyright">© Urheberrecht. Alle Rechte vorbehalten.<span class="footer-brandline">2026 Tierpsychologie Seelenbund.</span></div>
+      <a href="impressum.html">Impressum &amp; Datenschutz</a>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener("load", () => {
+      document.body.classList.add("page-visible");
+    });
+
+    const openImpressumBtn = document.getElementById("open-impressum");
+    const closeImpressumBtn = document.getElementById("close-impressum");
+    const impressumOverlay = document.getElementById("impressum-overlay");
+
+    if (openImpressumBtn && closeImpressumBtn && impressumOverlay) {
+      openImpressumBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        impressumOverlay.classList.add("active");
+      });
+
+      closeImpressumBtn.addEventListener("click", function () {
+        impressumOverlay.classList.remove("active");
+      });
+
+      impressumOverlay.addEventListener("click", function (e) {
+        if (e.target === impressumOverlay) {
+          impressumOverlay.classList.remove("active");
+        }
+      });
+    }
+
+    const serviceScroll = document.querySelector('.service-scroll');
+    const allServiceBlocks = serviceScroll ? Array.from(serviceScroll.querySelectorAll(':scope > .service-block')) : [];
+    const blockByTitle = (title) => allServiceBlocks.find((block) => block.querySelector('h2')?.textContent.trim() === title);
+    const blockById = (id) => document.getElementById(id);
+
+    if (serviceScroll) {
+      const generalAdvice = blockByTitle('Allgemeine Tierhaltungsberatung');
+      const nestedPetChoice = generalAdvice
+        ? Array.from(generalAdvice.querySelectorAll('.offer-subsection')).find((section) => section.querySelector('h3')?.textContent.trim() === 'Beratung bei der Auswahl des passenden Haustieres')
+        : null;
+      nestedPetChoice?.remove();
+
+      const carePanel = document.createElement('div');
+      carePanel.className = 'offer-panel';
+      carePanel.id = 'panel-betreuung';
+      carePanel.setAttribute('role', 'tabpanel');
+      carePanel.setAttribute('aria-labelledby', 'tab-betreuung');
+
+      const advicePanel = document.createElement('div');
+      advicePanel.className = 'offer-panel';
+      advicePanel.id = 'panel-beratung';
+      advicePanel.setAttribute('role', 'tabpanel');
+      advicePanel.setAttribute('aria-labelledby', 'tab-beratung');
+      advicePanel.hidden = true;
+
+      const welfarePanel = document.createElement('div');
+      welfarePanel.className = 'offer-panel';
+      welfarePanel.id = 'panel-tierschutz';
+      welfarePanel.setAttribute('role', 'tabpanel');
+      welfarePanel.setAttribute('aria-labelledby', 'tab-tierschutz');
+      welfarePanel.hidden = true;
+
+      [
+        blockByTitle('Kennenlerntermin'),
+        blockByTitle('Hundebetreuung bei Ihnen zu Hause'),
+        blockByTitle('Katzenbetreuung bei Ihnen zu Hause'),
+        blockByTitle('Kleintierbetreuung bei Ihnen zu Hause'),
+        blockByTitle('Notfallbetreuung'),
+        blockById('offer-preise'),
+        blockByTitle('Weil jedes Tier liebevolle Betreuung verdient'),
+        blockByTitle('Anfahrt'),
+        blockByTitle('Sonderzeiten'),
+        blockByTitle('Terminabsagen')
+      ].filter(Boolean).forEach((block) => carePanel.appendChild(block));
+
+      [
+        blockById('offer-hundeeinschaetzung'),
+        blockById('offer-haustierauswahl'),
+        blockById('offer-ankommen'),
+        generalAdvice,
+        blockById('offer-kleintierberatung'),
+        blockByTitle('Geschirr und Leinenberatung'),
+        blockById('offer-adoption'),
+        blockById('offer-notfallberatung')
+      ].filter(Boolean).forEach((block) => advicePanel.appendChild(block));
+
+      [blockByTitle('Vor- und Nachkontrollen bei Tiervermittlungen')]
+        .filter(Boolean)
+        .forEach((block) => welfarePanel.appendChild(block));
+
+      serviceScroll.replaceChildren(carePanel, advicePanel, welfarePanel);
+
+      const arrivalOffer = blockById('offer-ankommen');
+      const arrivalSummary = arrivalOffer?.querySelector('.offer-summary');
+      const arrivalMore = arrivalOffer?.querySelector('.offer-more');
+      const moreButton = arrivalOffer?.querySelector('.more-info-button');
+      const backButton = arrivalOffer?.querySelector('.back-button');
+      const adviceBlocks = advicePanel ? Array.from(advicePanel.querySelectorAll(':scope > .service-block')) : [];
+
+      const setArrivalDetailMode = (isOpen) => {
+        adviceBlocks.forEach((block) => {
+          if (block !== arrivalOffer) block.hidden = isOpen;
+        });
+        advicePanel?.classList.toggle('arrival-detail-open', isOpen);
+      };
+
+      const resetArrivalDetails = () => {
+        setArrivalDetailMode(false);
+        if (!arrivalSummary || !arrivalMore) return;
+        arrivalMore.hidden = true;
+        arrivalMore.classList.remove('is-entering');
+        arrivalSummary.hidden = false;
+      };
+
+      document.querySelectorAll('[data-offer-tab]').forEach((tab) => {
+        tab.addEventListener('click', () => {
+          resetArrivalDetails();
+          document.querySelectorAll('[data-offer-tab]').forEach((item) => {
+            const active = item === tab;
+            item.classList.toggle('active', active);
+            item.setAttribute('aria-selected', String(active));
+          });
+          serviceScroll.classList.add('switching');
+          window.setTimeout(() => {
+            const selected = tab.dataset.offerTab;
+            carePanel.hidden = selected !== 'betreuung';
+            advicePanel.hidden = selected !== 'beratung';
+            welfarePanel.hidden = selected !== 'tierschutz';
+            serviceScroll.scrollTop = 0;
+            serviceScroll.classList.remove('switching');
+            const visiblePanel = selected === 'betreuung' ? carePanel : selected === 'beratung' ? advicePanel : welfarePanel;
+            visiblePanel.classList.remove('is-fading');
+            void visiblePanel.offsetWidth;
+            visiblePanel.classList.add('is-fading');
+          }, 180);
+        });
+      });
+
+      moreButton?.addEventListener('click', () => {
+        setArrivalDetailMode(true);
+        arrivalSummary.hidden = true;
+        arrivalMore.hidden = false;
+        arrivalMore.classList.add('is-entering');
+        serviceScroll.scrollTo({ top: arrivalOffer.offsetTop - advicePanel.offsetTop, behavior: 'smooth' });
+        backButton.focus();
+      });
+
+      backButton?.addEventListener('click', () => {
+        setArrivalDetailMode(false);
+        arrivalMore.hidden = true;
+        arrivalMore.classList.remove('is-entering');
+        arrivalSummary.hidden = false;
+        serviceScroll.scrollTo({ top: arrivalOffer.offsetTop - advicePanel.offsetTop, behavior: 'smooth' });
+        moreButton.focus();
+      });
+
+      window.addEventListener('pagehide', resetArrivalDetails);
+      document.querySelectorAll('nav a, footer a').forEach((link) => link.addEventListener('click', resetArrivalDetails));
+    }
+
+    document.querySelectorAll('a[href]').forEach(link => {
+      const href = link.getAttribute('href');
+
+      if (
+        href &&
+        !href.startsWith('#') &&
+        !href.startsWith('mailto:') &&
+        !href.startsWith('tel:') &&
+        !link.hasAttribute('target') &&
+        link.id !== 'open-impressum'
+      ) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.body.classList.remove('page-visible');
+          document.body.classList.add('page-fade-out');
+
+          setTimeout(() => {
+            window.location.href = href;
+          }, 350);
+        });
+      }
+    });
+  </script>
+<script src="files/responsive.js"></script>
+</body>
+</html>

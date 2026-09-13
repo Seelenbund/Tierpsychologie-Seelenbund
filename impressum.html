@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tierpsychologie | Impressum &amp; Datenschutz</title>
+  <style>
+    :root {
+      --bg: #fffaf6;
+      --bg-soft: #fff4ea;
+      --card: rgba(255, 255, 255, 0.84);
+      --text: #4d4038;
+      --text-soft: #6f6159;
+      --primary: #d89d7d;
+      --primary-dark: #bf7e58;
+      --accent: #d7eadf;
+      --line: rgba(77, 64, 56, 0.1);
+      --shadow: 0 14px 35px rgba(99, 74, 58, 0.12);
+      --radius: 22px;
+      --max: 1180px;
+      --header-h: 72px;
+      --footer-h: 55px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(247, 242, 255, 0.58) 0 220px, transparent 380px),
+        radial-gradient(circle at 82% 78%, rgba(242, 236, 252, 0.42) 0 180px, transparent 320px),
+        radial-gradient(circle at 50% 20%, rgba(255,255,255,0.96) 0 120px, transparent 260px),
+        radial-gradient(circle at 12% 85%, rgba(246, 242, 250, 0.38) 0 110px, transparent 230px),
+        radial-gradient(circle at 88% 18%, rgba(250, 246, 255, 0.46) 0 110px, transparent 240px),
+        linear-gradient(135deg, #ffffff 0%, #fdfbff 42%, #fffaf6 74%, #ffffff 100%);
+      opacity: 0;
+      transition: opacity 0.45s ease;
+      animation: backgroundMood 14s ease-in-out infinite alternate;
+    }
+
+    body.page-visible {
+      opacity: 1;
+    }
+
+    body.page-fade-out {
+      opacity: 0;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -12%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body::before {
+      background:
+        radial-gradient(circle at 12% 22%, rgba(255,255,255,0.55) 0 26px, transparent 28px),
+        radial-gradient(circle at 26% 68%, rgba(244,236,255,0.42) 0 34px, transparent 36px),
+        radial-gradient(circle at 48% 20%, rgba(255,255,255,0.34) 0 20px, transparent 22px),
+        radial-gradient(circle at 64% 62%, rgba(238,226,255,0.44) 0 40px, transparent 44px),
+        radial-gradient(circle at 82% 30%, rgba(255,255,255,0.40) 0 28px, transparent 30px),
+        radial-gradient(circle at 90% 72%, rgba(246,238,255,0.34) 0 24px, transparent 26px);
+      filter: blur(10px);
+      opacity: 1;
+      animation: bokehFloat1 5s ease-in-out infinite alternate;
+    }
+
+    body::after {
+      background:
+        radial-gradient(circle at 18% 82%, rgba(255,255,255,0.34) 0 58px, transparent 60px),
+        radial-gradient(circle at 38% 42%, rgba(240,230,255,0.38) 0 48px, transparent 52px),
+        radial-gradient(circle at 58% 84%, rgba(255,255,255,0.28) 0 34px, transparent 38px),
+        radial-gradient(circle at 74% 18%, rgba(236,224,255,0.34) 0 56px, transparent 60px),
+        radial-gradient(circle at 92% 52%, rgba(255,255,255,0.26) 0 38px, transparent 42px);
+      filter: blur(16px);
+      opacity: 0.95;
+      animation: bokehFloat2 6.5s ease-in-out infinite alternate;
+    }
+
+    main::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 14% 24%, rgba(255,255,255,0.34) 0 8px, transparent 10px),
+        radial-gradient(circle at 24% 64%, rgba(255,255,255,0.28) 0 6px, transparent 8px),
+        radial-gradient(circle at 38% 28%, rgba(228,220,242,0.30) 0 9px, transparent 11px),
+        radial-gradient(circle at 52% 74%, rgba(255,255,255,0.24) 0 7px, transparent 9px),
+        radial-gradient(circle at 66% 34%, rgba(255,255,255,0.26) 0 8px, transparent 10px),
+        radial-gradient(circle at 78% 56%, rgba(228,220,242,0.24) 0 10px, transparent 12px),
+        radial-gradient(circle at 90% 26%, rgba(255,255,255,0.28) 0 7px, transparent 9px);
+      filter: blur(1px);
+      opacity: 0.9;
+      animation: magicSparkles 3.6s ease-in-out infinite alternate;
+    }
+
+    main {
+      height: calc(100vh - var(--header-h) - var(--footer-h));
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background:
+        radial-gradient(circle at 10% 35%, rgba(255, 220, 220, 0.18) 0 34px, transparent 62px),
+        radial-gradient(circle at 26% 72%, rgba(255, 240, 205, 0.18) 0 42px, transparent 72px),
+        radial-gradient(circle at 46% 28%, rgba(230, 220, 245, 0.18) 0 40px, transparent 70px),
+        radial-gradient(circle at 68% 68%, rgba(220, 236, 255, 0.16) 0 44px, transparent 76px),
+        radial-gradient(circle at 86% 34%, rgba(236, 226, 255, 0.16) 0 38px, transparent 68px),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.80), rgba(255, 248, 244, 0.72));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.52);
+      box-shadow: 0 10px 30px rgba(191, 126, 88, 0.08);
+      overflow: visible;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        100deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.10) 18%,
+        rgba(255, 255, 255, 0.42) 50%,
+        rgba(255, 255, 255, 0.10) 82%,
+        transparent 100%
+      );
+      transform: translateX(-140%);
+      animation: headerShimmer 3.8s linear infinite;
+      pointer-events: none;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.2rem;
+      padding: 0.5rem 0;
+      position: relative;
+      overflow: visible;
+      isolation: isolate;
+    }
+
+    .nav::after {
+      content: "";
+      position: absolute;
+      top: -10%;
+      left: -20%;
+      width: 70%;
+      height: 120%;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 210, 210, 0.08) 16%,
+        rgba(255, 238, 196, 0.16) 32%,
+        rgba(228, 220, 245, 0.22) 50%,
+        rgba(220, 236, 255, 0.16) 68%,
+        rgba(236, 226, 255, 0.10) 84%,
+        transparent 100%
+      );
+      filter: blur(10px);
+      transform: translateX(-120%);
+      animation: navShimmer 3.2s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+      padding-left: 0.4rem;
+    }
+
+    .brand-logo {
+      width: 240px;
+      height: auto;
+      display: block;
+      animation: pulseLogo 2.8s infinite ease-in-out;
+      transition: transform 0.25s ease, filter 0.25s ease;
+      transform-origin: center;
+      filter:
+        drop-shadow(0 8px 14px rgba(255,255,255,0.18))
+        drop-shadow(0 10px 18px rgba(216,157,125,0.12));
+    }
+
+    .brand:hover .brand-logo {
+      animation: none;
+      transform: scale(1.08);
+      filter:
+        drop-shadow(0 0 12px rgba(255,255,255,0.34))
+        drop-shadow(0 10px 18px rgba(216,157,125,0.18));
+    }
+
+    nav {
+      position: relative;
+      z-index: 2;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      display: inline-block;
+      padding: 0.38rem 0.7rem;
+      border-radius: 999px;
+      transition: 0.25s ease;
+      font-weight: 600;
+      color: var(--text-soft);
+      line-height: 1.2;
+      position: relative;
+      background: rgba(255,255,255,0.16);
+      overflow: hidden;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          100deg,
+          transparent 0%,
+          rgba(255,255,255,0.04) 24%,
+          rgba(255,255,255,0.28) 50%,
+          rgba(255,255,255,0.04) 76%,
+          transparent 100%
+        );
+      transform: translateX(-140%);
+      opacity: 0;
+    }
+
+    nav a:hover::after,
+    nav a.active::after {
+      opacity: 1;
+      animation: linkSparkle 2.2s ease-in-out infinite;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #b89a7a;
+      background: rgba(255,255,255,0.42);
+      box-shadow:
+        0 6px 16px rgba(216, 157, 125, 0.14),
+        0 0 10px rgba(255,255,255,0.16);
+    }
+
+    .hero {
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 2.2rem 0 1.4rem;
+    }
+
+    .service-card {
+  width: min(100%, 1080px);
+  margin: 0 auto;
+  padding: 1.55rem 1.9rem;
+  max-height: 620px;
+      overflow: hidden;
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.90),
+        rgba(255,255,255,0.82)
+      );
+      border: 1px solid rgba(255, 255, 255, 0.62);
+      border-radius: var(--radius);
+      box-shadow:
+        0 14px 35px rgba(99, 74, 58, 0.10),
+        0 4px 14px rgba(255,255,255,0.35) inset;
+      backdrop-filter: blur(10px);
+    }
+
+    .service-scroll {
+      max-height: 560px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 1rem;
+      padding-bottom: 3.5rem;
+      scrollbar-gutter: stable;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(77, 64, 56, 0.10) transparent;
+    }
+
+    .service-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .service-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .service-scroll::-webkit-scrollbar-thumb {
+      background: rgba(77, 64, 56, 0.10);
+      border-radius: 999px;
+    }
+
+    .service-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(77, 64, 56, 0.16);
+    }
+
+    h1, h2, h3 {
+      line-height: 1.18;
+    }
+
+    h1 {
+  font-size: clamp(1.25rem, 1.7vw, 1.9rem);
+  margin-bottom: 2.2rem;
+  text-align: center;
+}
+
+    .service-block {
+      padding: 1.1rem 1.15rem;
+      margin-bottom: 1rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.46);
+      border: 1px solid rgba(255,255,255,0.52);
+      box-shadow:
+        0 8px 22px rgba(99, 74, 58, 0.06),
+        inset 0 1px 8px rgba(255,255,255,0.22);
+    }
+
+    .service-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+    .service-head h2 {
+      font-size: clamp(1rem, 1.45vw, 1.3rem);
+      color: var(--text);
+      margin: 0;
+    }
+
+    .price-badge {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(216, 190, 165, 0.34);
+      color: #a97f60;
+      font-weight: 700;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      border: 1px solid rgba(77, 64, 56, 0.06);
+    }
+
+    .service-block p {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .service-block ul {
+      margin-left: 1.1rem;
+      margin-top: 0.45rem;
+      margin-bottom: 0.85rem;
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .service-block li {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+
+    .service-note {
+  color: var(--text-soft);
+  font-size: 0.88rem;
+  max-width: 760px;
+}
+
+    .discount-block {
+      background: linear-gradient(135deg, rgba(255, 247, 242, 0.78), rgba(215, 234, 223, 0.4));
+      border-color: rgba(216, 157, 125, 0.18);
+    }
+
+    .offer-subsection {
+      margin-top: 1.2rem;
+      padding-top: 1.15rem;
+      border-top: 1px solid rgba(77, 64, 56, 0.1);
+    }
+
+    .offer-subsection h3 {
+      margin-bottom: 0.8rem;
+      color: var(--text);
+      font-size: clamp(0.98rem, 1.35vw, 1.2rem);
+    }
+
+    .legal-section h3 {
+      margin: 1.35rem 0 0.55rem;
+      color: #a97f60;
+      font-size: clamp(0.98rem, 1.35vw, 1.18rem);
+    }
+
+    .legal-section .service-head + h3 {
+      margin-top: 0.2rem;
+    }
+
+    .legal-section a {
+      color: #a97f60;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .privacy-settings-button {
+      margin: 0.25rem 0 0.4rem;
+      padding: 0.65rem 1rem;
+      border: 1px solid rgba(77, 64, 56, 0.08);
+      border-radius: 999px;
+      color: white;
+      background: #d7b89a;
+      font: inherit;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .privacy-settings-button:hover,
+    .privacy-settings-button:focus-visible {
+      background: #caa786;
+      transform: translateY(-1px);
+    }
+
+    footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1200;
+      height: var(--footer-h);
+      border-top: 1px solid var(--line);
+      color: var(--text-soft);
+      font-size: 0.78rem;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      height: var(--footer-h);
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .footer-inner div,
+    .footer-inner a {
+      line-height: 1;
+      margin: 0;
+      padding: 0;
+    }
+
+    .footer-inner a {
+      color: var(--text-soft);
+      font-weight: 600;
+    }
+
+    .footer-inner a:hover {
+      color: #b89a7a;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(52, 39, 30, 0.34);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.25s ease;
+      z-index: 5000;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .overlay-box {
+      position: relative;
+      width: min(100%, 560px);
+      background: rgba(255, 250, 245, 0.82);
+      border: 1px solid rgba(255,255,255,0.48);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.16),
+        inset 0 1px 10px rgba(255,255,255,0.35);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .overlay-box h2 {
+      margin-bottom: 1rem;
+    }
+
+    .overlay-close {
+      position: absolute;
+      top: 0.7rem;
+      right: 0.9rem;
+      border: none;
+      background: transparent;
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+      color: #4d4038;
+    }
+
+    @keyframes pulseLogo {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    @keyframes headerShimmer {
+      0% {
+        transform: translateX(-140%);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.3;
+      }
+      50% {
+        opacity: 0.75;
+      }
+      80% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateX(160%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes navShimmer {
+      0% {
+        transform: translateX(-120%);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.35;
+      }
+      50% {
+        opacity: 0.9;
+      }
+      85% {
+        opacity: 0.35;
+      }
+      100% {
+        transform: translateX(170%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes linkSparkle {
+      0% {
+        transform: translateX(-140%);
+      }
+      100% {
+        transform: translateX(160%);
+      }
+    }
+
+    @keyframes magicSparkles {
+      0% {
+        opacity: 0.45;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0.95;
+        transform: translateY(-8px) scale(1.08);
+      }
+    }
+
+    @keyframes backgroundMood {
+      0% {
+        filter: brightness(1) saturate(1);
+      }
+      50% {
+        filter: brightness(1.02) saturate(1.03);
+      }
+      100% {
+        filter: brightness(0.97) saturate(0.96);
+      }
+    }
+
+    @keyframes bokehFloat1 {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      100% {
+        transform: translate3d(-46px, -30px, 0) scale(1.12);
+      }
+    }
+
+    @keyframes bokehFloat2 {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      100% {
+        transform: translate3d(38px, 24px, 0) scale(1.14);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .brand-logo {
+        width: 210px;
+      }
+
+      .service-card {
+        max-height: none;
+      }
+
+      .service-scroll {
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --header-h: 150px;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.4rem 0;
+      }
+
+      .nav::after {
+        width: 70%;
+        left: 15%;
+      }
+
+      .brand {
+        justify-content: center;
+      }
+
+      .brand-logo {
+        width: 190px;
+      }
+
+      nav ul {
+        justify-content: center;
+        gap: 0.75rem;
+      }
+
+      nav a {
+        padding: 0.28rem 0.62rem;
+        font-size: 0.96rem;
+      }
+
+      .hero {
+        padding-top: 2.4rem;
+      }
+
+      .service-card {
+        padding: 1.25rem;
+      }
+
+      .service-head {
+        flex-direction: column;
+        gap: 0.55rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width: min(calc(100% - 1rem), var(--max));
+      }
+
+      .brand-logo {
+        width: 160px;
+      }
+
+      .hero {
+        padding-top: 2rem;
+      }
+
+      h1 {
+        font-size: clamp(1.1rem, 5vw, 1.4rem);
+      }
+
+      .footer-inner {
+        height: var(--footer-h);
+        min-height: var(--footer-h);
+        padding: 0;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.4rem;
+        white-space: nowrap;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="files/responsive.css">
+  <link rel="stylesheet" href="files/privacy.css">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="home.html" aria-label="Zurück zur Startseite">
+        <img class="brand-logo" src="files/Logo1.png" alt="Logo Tierpsychologie" />
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="philosophie.html">Philosophie</a></li>
+          <li><a href="qualifikationen.html">Qualifikationen</a></li>
+          <li><a href="aktuellesangebot.html">Aktuelles Angebot</a></li>
+          <li><a href="leistungenundpreise.html">Leistungen & Preise</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="service-card">
+          <h1>Impressum &amp; Datenschutz</h1>
+
+          <div class="service-scroll legal-scroll">
+            <div class="service-block legal-section">
+              <div class="service-head">
+                <h2>Impressum</h2>
+              </div>
+
+              <h3>Angaben gemäß § 5 DDG</h3>
+              <p><strong>Tierpsychologie Seelenbund</strong><br>
+                Pia Bortels<br>
+                Alte Stöckener Str. 94<br>
+                30149 Hannover</p>
+
+              <p><strong>Kontakt</strong><br>
+                Telefon: <a href="tel:+4917687925330">0176 87925330</a><br>
+                E-Mail: <a href="mailto:info@tierpsychologie-seelenbund.de">info@tierpsychologie-seelenbund.de</a></p>
+
+              <h3>Verantwortlich für den Inhalt gemäß § 18 Abs. 2 MStV</h3>
+              <p>Pia Bortels<br>
+                Alte Stöckener Str. 94<br>
+                30149 Hannover</p>
+
+              <h3>Hinweis zu Übersetzungen</h3>
+              <p class="service-note">Alle Inhalte außer der deutschen Originalfassung wurden automatisch mithilfe von KI übersetzt. Trotz sorgfältiger technischer Umsetzung können Übersetzungsfehler oder inhaltliche Abweichungen auftreten. Maßgeblich ist die deutsche Fassung.</p>
+
+              <h3>Absichtserklärung:</h3>
+              <p>Unsere Internetseiten enthalten nur seriöse und von ausgewiesenen Fachleuten geprüfte Informationen. Unser Angebot wird ständig aktualisiert und ist frei vom Einfluss irgendwelcher Sponsoren. Die Navigation in unserem Angebot ist so gestaltet, dass die gewünschten Informationen schnell und mühelos aufgefunden werden können.</p>
+
+              <h3>Haftungshinweis:</h3>
+              <p>Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
+
+              <h3>Verstoß gegen Schadensminderungspflicht bei kostenpflichtiger Abmahnung:</h3>
+              <p>Bei Einwendungen gegen Inhalte oder Darstellungen in dieser Website wegen Verletzung gesetzlicher Normen oder Eingriff in persönliche Rechte bitten wir um Kontaktaufnahme und einen begründeten Hinweis ohne Kostennote. Wir versichern dafür im Gegenzug, die zu Recht beanstandeten Inhalte oder Gestaltungen dieser Website unverzüglich zu entfernen bzw. abzuändern. Aufgrund dieser Garantie ist von Ihrer Seite die Einschaltung eines Rechtsbeistandes nicht erforderlich. Die Beauftragung eines Rechtsbeistands zu kostenpflichtigen Abmahnung ist damit gemäß § 12 I iVm. § 8 IV UWG rechtsmissbräuchlich, da in diesem Fall sachfremde Erwägungen (etwa Kostenerzielungsabsicht) unterstellt werden können. Damit läge von Ihrer Seite ein Verstoß gegen die Schadensminderungspflicht vor, so dass Sie die Kosten zu tragen hätten.</p>
+            </div>
+
+            <div class="service-block legal-section">
+              <div class="service-head">
+                <h2>Datenschutzerklärung</h2>
+              </div>
+              <p class="service-note">Stand: September 2026</p>
+
+              <h3>1. Verantwortliche Stelle</h3>
+              <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
+              <p><strong>Pia Bortels – Tierpsychologie Seelenbund</strong><br>
+                Alte Stöckener Str. 94<br>
+                30149 Hannover<br>
+                Telefon: <a href="tel:+4917687925330">0176 87925330</a><br>
+                E-Mail: <a href="mailto:info@tierpsychologie-seelenbund.de">info@tierpsychologie-seelenbund.de</a></p>
+
+              <h3>2. Allgemeine Hinweise zur Datenverarbeitung</h3>
+              <p>Personenbezogene Daten sind alle Informationen, mit denen Sie persönlich identifiziert werden können. Wir verarbeiten personenbezogene Daten nur, soweit dies zur Bereitstellung dieser Website, zur Bearbeitung Ihrer Anfragen oder zur Durchführung vorvertraglicher bzw. vertraglicher Maßnahmen erforderlich ist oder Sie eingewilligt haben.</p>
+
+              <h3>3. Bereitstellung der Website und Server-Protokolldateien</h3>
+              <p>Beim Aufruf dieser Website können durch den Hostinganbieter technisch erforderliche Daten verarbeitet werden. Dazu können insbesondere IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Datei, Referrer-URL, Browsertyp, Betriebssystem und HTTP-Statuscode gehören.</p>
+              <p>Die Verarbeitung erfolgt zur sicheren und stabilen Bereitstellung der Website sowie zur Abwehr von Missbrauch auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse liegt im sicheren und fehlerfreien Betrieb der Website. Protokolldaten werden nur so lange gespeichert, wie dies für diese Zwecke erforderlich ist; gesetzliche Aufbewahrungspflichten bleiben unberührt.</p>
+
+              <h3>4. Kontaktaufnahme per Telefon oder E-Mail</h3>
+              <p>Wenn Sie uns per Telefon oder E-Mail kontaktieren, verarbeiten wir Ihre Angaben einschließlich der von Ihnen mitgeteilten Kontaktdaten zur Bearbeitung Ihrer Anfrage und für mögliche Anschlussfragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit Ihre Anfrage auf den Abschluss oder die Durchführung eines Vertrags gerichtet ist, andernfalls Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse liegt in der sachgerechten Bearbeitung Ihrer Anfrage.</p>
+              <p>Die Daten werden gelöscht, wenn Ihre Anfrage abschließend bearbeitet ist und keine gesetzlichen Aufbewahrungspflichten oder sonstigen berechtigten Gründe für eine weitere Speicherung bestehen.</p>
+
+              <h3>5. Kontaktformular und Formspree</h3>
+              <p>Für das Kontaktformular nutzen wir Formspree, einen Dienst der Formspree, Inc. Wenn Sie das Formular absenden, werden Ihre E-Mail-Adresse, Ihre Nachricht sowie technisch anfallende Verbindungsdaten an Formspree übermittelt und dort verarbeitet. Formspree verarbeitet Daten in den USA und nutzt nach eigenen Angaben geeignete Garantien für internationale Datenübermittlungen, darunter Standardvertragsklauseln.</p>
+              <p>Die Verarbeitung dient ausschließlich der Übermittlung und Bearbeitung Ihrer Anfrage. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit es um vorvertragliche oder vertragliche Kommunikation geht, andernfalls Art. 6 Abs. 1 lit. f DSGVO. Die Bereitstellung der Daten ist freiwillig; ohne E-Mail-Adresse und Nachricht kann das Formular nicht genutzt werden.</p>
+              <p class="legal-links">Weitere Informationen: <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">Datenschutzhinweise von Formspree</a>.</p>
+
+              <h3>6. Live-Chat mit tawk.to</h3>
+              <p>Auf dieser Website kann ein Live-Chat des Anbieters tawk.to genutzt werden. Der Chat wird erst geladen, nachdem Sie ausdrücklich zugestimmt haben. Dabei können insbesondere IP-Adresse, Geräte- und Browserinformationen, Nutzungsdaten sowie die von Ihnen im Chat eingegebenen Inhalte verarbeitet werden. tawk.to verarbeitet Daten in den USA und verweist für internationale Übermittlungen unter anderem auf das EU-U.S. Data Privacy Framework und vertragliche Schutzmechanismen.</p>
+              <p>Rechtsgrundlage ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO und, soweit Informationen auf Ihrem Endgerät gespeichert oder ausgelesen werden, § 25 Abs. 1 TDDDG. Die Einwilligung ist freiwillig und kann jederzeit mit Wirkung für die Zukunft widerrufen werden.</p>
+              <p class="legal-links">Weitere Informationen: <a href="https://www.tawk.to/privacy-policy/" target="_blank" rel="noopener noreferrer">Datenschutzhinweise von tawk.to</a>.</p>
+              <button class="privacy-settings-button" type="button" data-chat-consent-manage>Chat-Einstellungen verwalten</button>
+              <span class="privacy-settings-status" aria-live="polite"></span>
+
+              <h3>7. Speicherung Ihrer Chat-Auswahl</h3>
+              <p>Damit Ihre Entscheidung zum Live-Chat berücksichtigt werden kann, speichern wir den Eintrag „seelenbund-chat-consent“ in Ihrem Browser. Diese Speicherung ist für die Verwaltung Ihrer Datenschutzentscheidung erforderlich. Über „Chat-Einstellungen verwalten“ können Sie eine erteilte Einwilligung jederzeit widerrufen oder den Chat wieder erlauben. Bei einem Widerruf wird der Chat für künftige Seitenaufrufe nicht mehr geladen. Bereits übermittelte Chatnachrichten werden dadurch nicht automatisch gelöscht.</p>
+
+              <h3>8. Externe Links</h3>
+              <p>Diese Website enthält Links zu externen Angeboten. Erst wenn Sie einen solchen Link anklicken, wird eine Verbindung zum jeweiligen Anbieter hergestellt. Für die Datenverarbeitung auf den verlinkten Seiten ist der jeweilige Anbieter verantwortlich.</p>
+
+              <h3>9. Speicherdauer</h3>
+              <p>Soweit in dieser Datenschutzerklärung keine besondere Speicherdauer genannt ist, speichern wir personenbezogene Daten nur so lange, wie der jeweilige Verarbeitungszweck besteht. Anschließend werden die Daten gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten oder Rechtsansprüche eine längere Speicherung erfordern.</p>
+
+              <h3>10. Ihre Rechte</h3>
+              <p>Sie haben im Rahmen der gesetzlichen Voraussetzungen das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung und Datenübertragbarkeit. Außerdem können Sie einer Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO aus Gründen, die sich aus Ihrer besonderen Situation ergeben, widersprechen. Eine erteilte Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen.</p>
+
+              <h3>11. Beschwerderecht bei einer Aufsichtsbehörde</h3>
+              <p>Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren.</p>
+
+              <h3>12. Automatisierte Entscheidungen</h3>
+              <p>Eine automatisierte Entscheidungsfindung einschließlich Profiling findet nicht statt.</p>
+
+              <h3>13. Aktualisierung dieser Datenschutzerklärung</h3>
+              <p>Wir passen diese Datenschutzerklärung an, wenn sich die Website, die eingesetzten Dienste oder die rechtlichen Anforderungen ändern.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="overlay" id="impressum-overlay">
+    <div class="overlay-box">
+      <button class="overlay-close" id="close-impressum" aria-label="Impressum schließen">×</button>
+      <h2>Impressum</h2>
+      <div>
+        <p><strong>Tierpsychologie</strong></p>
+        <p>Pia Bortels</p>
+        <p>Alte Stöckener Str. 94</p>
+        <p>30149 Hannover</p>
+        <p>E-Mail: info@tierpsychologie-seelenbund.de</p>
+        <p>Telefon: 0176 87925330</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container footer-inner">
+     <div class="footer-copyright">© Urheberrecht. Alle Rechte vorbehalten.<span class="footer-brandline">2026 Tierpsychologie Seelenbund.</span></div>
+      <a href="impressum.html">Impressum &amp; Datenschutz</a>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener("load", () => {
+      document.body.classList.add("page-visible");
+    });
+
+    const openImpressumBtn = document.getElementById("open-impressum");
+    const closeImpressumBtn = document.getElementById("close-impressum");
+    const impressumOverlay = document.getElementById("impressum-overlay");
+
+    if (openImpressumBtn && closeImpressumBtn && impressumOverlay) {
+      openImpressumBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        impressumOverlay.classList.add("active");
+      });
+
+      closeImpressumBtn.addEventListener("click", function () {
+        impressumOverlay.classList.remove("active");
+      });
+
+      impressumOverlay.addEventListener("click", function (e) {
+        if (e.target === impressumOverlay) {
+          impressumOverlay.classList.remove("active");
+        }
+      });
+    }
+
+    document.querySelectorAll('a[href]').forEach(link => {
+      const href = link.getAttribute('href');
+
+      if (
+        href &&
+        !href.startsWith('#') &&
+        !href.startsWith('mailto:') &&
+        !href.startsWith('tel:') &&
+        !link.hasAttribute('target') &&
+        link.id !== 'open-impressum'
+      ) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.body.classList.remove('page-visible');
+          document.body.classList.add('page-fade-out');
+
+          setTimeout(() => {
+            window.location.href = href;
+          }, 350);
+        });
+      }
+    });
+  </script>
+<script src="files/responsive.js"></script>
+</body>
+</html>

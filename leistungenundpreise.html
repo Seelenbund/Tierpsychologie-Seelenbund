@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tierpsychologie | Leistungen & Preise</title>
+  <style>
+    :root {
+      --bg: #fffaf6;
+      --bg-soft: #fff4ea;
+      --card: rgba(255, 255, 255, 0.84);
+      --text: #4d4038;
+      --text-soft: #6f6159;
+      --primary: #d89d7d;
+      --primary-dark: #bf7e58;
+      --accent: #d7eadf;
+      --line: rgba(77, 64, 56, 0.1);
+      --shadow: 0 14px 35px rgba(99, 74, 58, 0.12);
+      --radius: 22px;
+      --max: 1180px;
+      --header-h: 72px;
+      --footer-h: 55px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(247, 242, 255, 0.58) 0 220px, transparent 380px),
+        radial-gradient(circle at 82% 78%, rgba(242, 236, 252, 0.42) 0 180px, transparent 320px),
+        radial-gradient(circle at 50% 20%, rgba(255,255,255,0.96) 0 120px, transparent 260px),
+        radial-gradient(circle at 12% 85%, rgba(246, 242, 250, 0.38) 0 110px, transparent 230px),
+        radial-gradient(circle at 88% 18%, rgba(250, 246, 255, 0.46) 0 110px, transparent 240px),
+        linear-gradient(135deg, #ffffff 0%, #fdfbff 42%, #fffaf6 74%, #ffffff 100%);
+      opacity: 0;
+      transition: opacity 0.45s ease;
+      animation: backgroundMood 14s ease-in-out infinite alternate;
+    }
+
+    body.page-visible {
+      opacity: 1;
+    }
+
+    body.page-fade-out {
+      opacity: 0;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -12%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body::before {
+      background:
+        radial-gradient(circle at 12% 22%, rgba(255,255,255,0.55) 0 26px, transparent 28px),
+        radial-gradient(circle at 26% 68%, rgba(244,236,255,0.42) 0 34px, transparent 36px),
+        radial-gradient(circle at 48% 20%, rgba(255,255,255,0.34) 0 20px, transparent 22px),
+        radial-gradient(circle at 64% 62%, rgba(238,226,255,0.44) 0 40px, transparent 44px),
+        radial-gradient(circle at 82% 30%, rgba(255,255,255,0.40) 0 28px, transparent 30px),
+        radial-gradient(circle at 90% 72%, rgba(246,238,255,0.34) 0 24px, transparent 26px);
+      filter: blur(10px);
+      opacity: 1;
+      animation: bokehFloat1 5s ease-in-out infinite alternate;
+    }
+
+    body::after {
+      background:
+        radial-gradient(circle at 18% 82%, rgba(255,255,255,0.34) 0 58px, transparent 60px),
+        radial-gradient(circle at 38% 42%, rgba(240,230,255,0.38) 0 48px, transparent 52px),
+        radial-gradient(circle at 58% 84%, rgba(255,255,255,0.28) 0 34px, transparent 38px),
+        radial-gradient(circle at 74% 18%, rgba(236,224,255,0.34) 0 56px, transparent 60px),
+        radial-gradient(circle at 92% 52%, rgba(255,255,255,0.26) 0 38px, transparent 42px);
+      filter: blur(16px);
+      opacity: 0.95;
+      animation: bokehFloat2 6.5s ease-in-out infinite alternate;
+    }
+
+    main::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 14% 24%, rgba(255,255,255,0.34) 0 8px, transparent 10px),
+        radial-gradient(circle at 24% 64%, rgba(255,255,255,0.28) 0 6px, transparent 8px),
+        radial-gradient(circle at 38% 28%, rgba(228,220,242,0.30) 0 9px, transparent 11px),
+        radial-gradient(circle at 52% 74%, rgba(255,255,255,0.24) 0 7px, transparent 9px),
+        radial-gradient(circle at 66% 34%, rgba(255,255,255,0.26) 0 8px, transparent 10px),
+        radial-gradient(circle at 78% 56%, rgba(228,220,242,0.24) 0 10px, transparent 12px),
+        radial-gradient(circle at 90% 26%, rgba(255,255,255,0.28) 0 7px, transparent 9px);
+      filter: blur(1px);
+      opacity: 0.9;
+      animation: magicSparkles 3.6s ease-in-out infinite alternate;
+    }
+
+    main {
+      height: calc(100vh - var(--header-h) - var(--footer-h));
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background:
+        radial-gradient(circle at 10% 35%, rgba(255, 220, 220, 0.18) 0 34px, transparent 62px),
+        radial-gradient(circle at 26% 72%, rgba(255, 240, 205, 0.18) 0 42px, transparent 72px),
+        radial-gradient(circle at 46% 28%, rgba(230, 220, 245, 0.18) 0 40px, transparent 70px),
+        radial-gradient(circle at 68% 68%, rgba(220, 236, 255, 0.16) 0 44px, transparent 76px),
+        radial-gradient(circle at 86% 34%, rgba(236, 226, 255, 0.16) 0 38px, transparent 68px),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.80), rgba(255, 248, 244, 0.72));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.52);
+      box-shadow: 0 10px 30px rgba(191, 126, 88, 0.08);
+      overflow: visible;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        100deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.10) 18%,
+        rgba(255, 255, 255, 0.42) 50%,
+        rgba(255, 255, 255, 0.10) 82%,
+        transparent 100%
+      );
+      transform: translateX(-140%);
+      animation: headerShimmer 3.8s linear infinite;
+      pointer-events: none;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.2rem;
+      padding: 0.5rem 0;
+      position: relative;
+      overflow: visible;
+      isolation: isolate;
+    }
+
+    .nav::after {
+      content: "";
+      position: absolute;
+      top: -10%;
+      left: -20%;
+      width: 70%;
+      height: 120%;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 210, 210, 0.08) 16%,
+        rgba(255, 238, 196, 0.16) 32%,
+        rgba(228, 220, 245, 0.22) 50%,
+        rgba(220, 236, 255, 0.16) 68%,
+        rgba(236, 226, 255, 0.10) 84%,
+        transparent 100%
+      );
+      filter: blur(10px);
+      transform: translateX(-120%);
+      animation: navShimmer 3.2s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+      padding-left: 0.4rem;
+    }
+
+    .brand-logo {
+      width: 240px;
+      height: auto;
+      display: block;
+      animation: pulseLogo 2.8s infinite ease-in-out;
+      transition: transform 0.25s ease, filter 0.25s ease;
+      transform-origin: center;
+      filter:
+        drop-shadow(0 8px 14px rgba(255,255,255,0.18))
+        drop-shadow(0 10px 18px rgba(216,157,125,0.12));
+    }
+
+    .brand:hover .brand-logo {
+      animation: none;
+      transform: scale(1.08);
+      filter:
+        drop-shadow(0 0 12px rgba(255,255,255,0.34))
+        drop-shadow(0 10px 18px rgba(216,157,125,0.18));
+    }
+
+    nav {
+      position: relative;
+      z-index: 2;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      display: inline-block;
+      padding: 0.38rem 0.7rem;
+      border-radius: 999px;
+      transition: 0.25s ease;
+      font-weight: 600;
+      color: var(--text-soft);
+      line-height: 1.2;
+      position: relative;
+      background: rgba(255,255,255,0.16);
+      overflow: hidden;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          100deg,
+          transparent 0%,
+          rgba(255,255,255,0.04) 24%,
+          rgba(255,255,255,0.28) 50%,
+          rgba(255,255,255,0.04) 76%,
+          transparent 100%
+        );
+      transform: translateX(-140%);
+      opacity: 0;
+    }
+
+    nav a:hover::after,
+    nav a.active::after {
+      opacity: 1;
+      animation: linkSparkle 2.2s ease-in-out infinite;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #b89a7a;
+      background: rgba(255,255,255,0.42);
+      box-shadow:
+        0 6px 16px rgba(216, 157, 125, 0.14),
+        0 0 10px rgba(255,255,255,0.16);
+    }
+
+    .hero {
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 2.2rem 0 1.4rem;
+    }
+
+    .service-card {
+  width: min(100%, 1080px);
+  margin: 0 auto;
+  padding: 1.55rem 1.9rem;
+  max-height: 620px;
+      overflow: hidden;
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.90),
+        rgba(255,255,255,0.82)
+      );
+      border: 1px solid rgba(255, 255, 255, 0.62);
+      border-radius: var(--radius);
+      box-shadow:
+        0 14px 35px rgba(99, 74, 58, 0.10),
+        0 4px 14px rgba(255,255,255,0.35) inset;
+      backdrop-filter: blur(10px);
+    }
+
+    .service-scroll {
+      max-height: 560px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 1rem;
+      padding-bottom: 3.5rem;
+      scrollbar-gutter: stable;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(77, 64, 56, 0.10) transparent;
+    }
+
+    .service-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .service-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .service-scroll::-webkit-scrollbar-thumb {
+      background: rgba(77, 64, 56, 0.10);
+      border-radius: 999px;
+    }
+
+    .service-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(77, 64, 56, 0.16);
+    }
+
+    h1, h2, h3 {
+      line-height: 1.18;
+    }
+
+    h1 {
+  font-size: clamp(1.25rem, 1.7vw, 1.9rem);
+  margin-bottom: 2.2rem;
+  text-align: center;
+}
+
+    .service-block {
+      padding: 1.1rem 1.15rem;
+      margin-bottom: 1rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.46);
+      border: 1px solid rgba(255,255,255,0.52);
+      box-shadow:
+        0 8px 22px rgba(99, 74, 58, 0.06),
+        inset 0 1px 8px rgba(255,255,255,0.22);
+      position: relative;
+      overflow: hidden;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .service-block > * {
+      filter: blur(9px);
+      opacity: 0.78;
+      pointer-events: none;
+    }
+
+    .service-block::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      pointer-events: none;
+      background: rgba(255,255,255,0.3);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .service-block::after {
+      content: "Aktuell nicht Verfügbar!";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 21;
+      pointer-events: none;
+      padding: 0.55rem 1.15rem;
+      border: 1px solid rgba(169,87,87,0.24);
+      border-radius: 10px;
+      color: #a95757;
+      background: rgba(255,255,255,0.88);
+      box-shadow: 0 8px 24px rgba(99,74,58,0.12);
+      font-size: clamp(0.92rem, 1.6vw, 1.12rem);
+      font-weight: 650;
+      white-space: nowrap;
+      transform: translate(-50%, -50%) rotate(-5deg);
+    }
+
+    .service-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+    .service-head h2 {
+      font-size: clamp(1rem, 1.45vw, 1.3rem);
+      color: var(--text);
+      margin: 0;
+    }
+
+    .price-badge {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(216, 190, 165, 0.34);
+      color: #a97f60;
+      font-weight: 700;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      border: 1px solid rgba(77, 64, 56, 0.06);
+    }
+
+    .service-block p {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .service-block ul {
+      margin-left: 1.1rem;
+      margin-top: 0.45rem;
+      margin-bottom: 0.85rem;
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .service-block li {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+
+    .service-note {
+  color: var(--text-soft);
+  font-size: 0.88rem;
+  max-width: 760px;
+}
+
+    footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1200;
+      height: var(--footer-h);
+      border-top: 1px solid var(--line);
+      color: var(--text-soft);
+      font-size: 0.78rem;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      height: var(--footer-h);
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .footer-inner div,
+    .footer-inner a {
+      line-height: 1;
+      margin: 0;
+      padding: 0;
+    }
+
+    .footer-inner a {
+      color: var(--text-soft);
+      font-weight: 600;
+    }
+
+    .footer-inner a:hover {
+      color: #b89a7a;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(52, 39, 30, 0.34);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.25s ease;
+      z-index: 5000;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .overlay-box {
+      position: relative;
+      width: min(100%, 560px);
+      background: rgba(255, 250, 245, 0.82);
+      border: 1px solid rgba(255,255,255,0.48);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.16),
+        inset 0 1px 10px rgba(255,255,255,0.35);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .overlay-box h2 {
+      margin-bottom: 1rem;
+    }
+
+    .overlay-close {
+      position: absolute;
+      top: 0.7rem;
+      right: 0.9rem;
+      border: none;
+      background: transparent;
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+      color: #4d4038;
+    }
+
+    @keyframes pulseLogo {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    @keyframes headerShimmer {
+      0% {
+        transform: translateX(-140%);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.3;
+      }
+      50% {
+        opacity: 0.75;
+      }
+      80% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateX(160%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes navShimmer {
+      0% {
+        transform: translateX(-120%);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.35;
+      }
+      50% {
+        opacity: 0.9;
+      }
+      85% {
+        opacity: 0.35;
+      }
+      100% {
+        transform: translateX(170%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes linkSparkle {
+      0% {
+        transform: translateX(-140%);
+      }
+      100% {
+        transform: translateX(160%);
+      }
+    }
+
+    @keyframes magicSparkles {
+      0% {
+        opacity: 0.45;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0.95;
+        transform: translateY(-8px) scale(1.08);
+      }
+    }
+
+    @keyframes backgroundMood {
+      0% {
+        filter: brightness(1) saturate(1);
+      }
+      50% {
+        filter: brightness(1.02) saturate(1.03);
+      }
+      100% {
+        filter: brightness(0.97) saturate(0.96);
+      }
+    }
+
+    @keyframes bokehFloat1 {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      100% {
+        transform: translate3d(-46px, -30px, 0) scale(1.12);
+      }
+    }
+
+    @keyframes bokehFloat2 {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      100% {
+        transform: translate3d(38px, 24px, 0) scale(1.14);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .brand-logo {
+        width: 210px;
+      }
+
+      .service-card {
+        max-height: none;
+      }
+
+      .service-scroll {
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --header-h: 150px;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.4rem 0;
+      }
+
+      .nav::after {
+        width: 70%;
+        left: 15%;
+      }
+
+      .brand {
+        justify-content: center;
+      }
+
+      .brand-logo {
+        width: 190px;
+      }
+
+      nav ul {
+        justify-content: center;
+        gap: 0.75rem;
+      }
+
+      nav a {
+        padding: 0.28rem 0.62rem;
+        font-size: 0.96rem;
+      }
+
+      .hero {
+        padding-top: 2.4rem;
+      }
+
+      .service-card {
+        padding: 1.25rem;
+      }
+
+      .service-head {
+        flex-direction: column;
+        gap: 0.55rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width: min(calc(100% - 1rem), var(--max));
+      }
+
+      .brand-logo {
+        width: 160px;
+      }
+
+      .hero {
+        padding-top: 2rem;
+      }
+
+      h1 {
+        font-size: clamp(1.1rem, 5vw, 1.4rem);
+      }
+
+      .footer-inner {
+        height: var(--footer-h);
+        min-height: var(--footer-h);
+        padding: 0;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.4rem;
+        white-space: nowrap;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="files/responsive.css">
+  <link rel="stylesheet" href="files/privacy.css">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="home.html" aria-label="Zurück zur Startseite">
+        <img class="brand-logo" src="files/Logo1.png" alt="Logo Tierpsychologie" />
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="philosophie.html">Philosophie</a></li>
+          <li><a href="qualifikationen.html">Qualifikationen</a></li>
+          <li><a href="aktuellesangebot.html">Aktuelles Angebot</a></li>
+          <li><a class="active" href="leistungenundpreise.html">Leistungen & Preise</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="service-card">
+          <h1>Leistungen & Preise</h1>
+
+          <div class="service-scroll">
+<div class="service-block">
+  <div class="service-head">
+    <h2>Kostenloses Erstgespräch</h2>
+    <span class="price-badge">0 € / 20 Min.</span>
+  </div>
+
+  <p>
+    Ein kurzes erstes Gespräch, um Ihr Anliegen kennenzulernen und gemeinsam zu schauen,<br>
+    welche Unterstützung passend sein kann.
+  </p>
+</div>
+<div class="service-block">
+  <div class="service-head">
+    <h2>Einmalige Einschätzung deines Hundes</h2>
+    <span class="price-badge">30 €</span>
+  </div>
+
+  <p>
+    Eine fachliche Einschätzung deines Hundes und seiner aktuellen Situation.
+  </p>
+</div>
+            <div class="service-block">
+              <div class="service-head">
+                <h2>Verhaltensberatung Hund</h2>
+                <span class="price-badge">70 € / 60 Min.</span>
+              </div>
+
+              <p class="service-note">
+  Geeignet z. B. bei Ängstlichkeit, Unsicherheit, Schwierigkeiten bei der Leinenführigkeit,
+  Herausforderungen bei Hundebegegnungen oder dem Ankommen eines Hundes aus dem Ausland
+</p>
+
+              <p><strong>Inhalt der Verhaltensberatung:</strong></p>
+              <ul>
+                <li>Auswertung des vorab ausgefüllten Anamnesebogens</li>
+                <li>Gespräch über Ihre aktuelle Situation und Ihre bisherigen Erfahrungen</li>
+                <li>Ruhige Beobachtung und fachliche Einschätzung deines Hundes im aktuellen Verhalten</li>
+                <li>Blick auf Ihre Beziehung und Kommunikation im Alltag</li>
+                <li>Analyse möglicher Ursachen, z. B. Stress, Unsicherheit, Lernerfahrungen oder Krankheit</li>
+                <li>Erste individuelle Trainingsempfehlungen und Lösungsansätze oder ggf. Managementmaßnahmen</li>
+                <li>Erste kleine Übungen, die Sie direkt umsetzen können</li>
+                <li>Beantwortung offener Fragen und Nachbetreuung</li>
+              </ul>
+            </div>
+
+            <div class="service-block">
+              <div class="service-head">
+                <h2>Angsthunde im häuslichen Umfeld</h2>
+                <span class="price-badge">60 € / 60 Min.</span>
+              </div>
+
+              <p class="service-note">
+                Geeignet z. B. bei Unsicherheit in der Wohnung, Geräuschangst oder Besuch.
+              </p>
+
+              <p><strong>Inhalt:</strong></p>
+              <ul>
+                <li>Ausführliche Anamnese, z. B. Vorgeschichte, Auslöser und Tagesabläufe</li>
+                <li>Einfühlsame Beobachtung deines Hundes in seiner gewohnten Umgebung</li>
+                <li>Einschätzung der Auslöser und der emotionalen Lage deines Hundes</li>
+                <li>Erste Managementmaßnahmen und ggf. Trainingsansätze</li>
+              </ul>
+            </div>
+
+            <div class="service-block">
+              <div class="service-head">
+                <h2>Ankommen und Vertrauen</h2>
+                <span class="price-badge">220 € / 4 Wochen</span>
+              </div>
+
+              <p class="service-note">
+                Spezialangebot für Hunde aus dem Ausland sowie generell ängstliche und unsichere Hunde.
+              </p>
+
+              <p>
+                Ein neuer Start. Ein neues Leben. Und jede Menge neuer Eindrücke für Ihren Hund.
+              </p>
+
+              <p>
+                Hunde aus dem Ausland brauchen oft mehr als nur Training – sie brauchen Zeit, Verständnis und eine sichere Begleitung, um wirklich anzukommen.
+              </p>
+
+              <p>
+                In meiner fünfzehnjährigen Tätigkeit im In- und Auslandstierschutz habe ich viele Adoptanten betreut und weiß, wie wichtig und sinnvoll eine fachliche Begleitung gerade am Anfang ist. Sie gibt dem Halter Sicherheit im Handling und schafft somit die Basis für eine stabile und vertrauensvolle Mensch-Hund-Beziehung.
+              </p>
+
+              <p>
+                Ich begleite Sie in den ersten wichtigen Wochen – Schritt für Schritt, in Ihrem Tempo. Ohne Druck. Dafür mit Klarheit, Struktur und ganz viel Verständnis für Ihren Hund.
+              </p>
+
+              <p><strong>Enthalten sind:</strong></p>
+              <ul>
+                <li>4 Einzeltermine, bei Bedarf auch mehr, in den ersten vier Wochen nach Ankunft des Hundes</li>
+              </ul>
+
+              <p><strong>Im ersten Termin:</strong></p>
+              <ul>
+                <li>Ersteinschätzung des Hundes</li>
+                <li>Erste Empfehlungen im Umgang mit dem Hund, damit er sich sicher fühlen kann</li>
+                <li>Ggf. Managementmaßnahmen</li>
+                <li>Gesundheitliche Fragen aufgreifen und ggf. Überweisung an einen Tierarzt</li>
+              </ul>
+
+              <p class="service-note">
+                Hunde aus dem Ausland bringen manchmal nicht nur ihre Geschichte, sondern auch körperliche Themen mit. Deshalb empfehle ich zu Beginn immer eine tierärztliche Abklärung, um sicherzugehen, dass Ihr Hund sich auch gesundheitlich wohlfühlt.
+              </p>
+
+              <p><strong>Im zweiten Termin:</strong></p>
+              <ul>
+                <li>Erste langsame Trainingsschritte, z. B. Spaziergänge, Begegnungen, fremder Besuch oder Alleine bleiben</li>
+                <li>Sehr individuell und abhängig vom jeweiligen Hund</li>
+                <li>Gesundheitliche Fragen aufgreifen</li>
+                <li>Aktuelle Themen und Probleme besprechen</li>
+                <li>Aufbau von Vertrauen und Bindung</li>
+              </ul>
+
+              <p><strong>Im dritten Termin:</strong></p>
+              <ul>
+                <li>Rückblick auf die ersten beiden Termine</li>
+                <li>Alltagsübungen</li>
+                <li>Weiterer Aufbau von Vertrauen und Bindung</li>
+                <li>Festigung erster Fortschritte</li>
+                <li>Klärung aufkommender Fragen</li>
+              </ul>
+
+              <p><strong>Im vierten Termin:</strong></p>
+              <ul>
+                <li>Gemeinsamer Blick auf die letzten vier Wochen</li>
+                <li>Feinabstimmung der bisherigen Trainingsschritte</li>
+                <li>Anpassung des Trainings an neue Herausforderungen</li>
+                <li>Stärkung Ihrer Sicherheit im Umgang mit Ihrem Hund</li>
+              </ul>
+
+              <p>
+                Im letzten Termin schauen wir gemeinsam, was sich in den letzten Wochen entwickelt hat. Wir festigen die bisherigen Trainingsschritte, klären offene Fragen und passen das Training an Ihren Alltag an.
+              </p>
+
+              <p>
+                So gehen Sie mit einem sicheren Gefühl und klaren nächsten Schritten aus der Begleitung. Falls die Betreuung nicht ausreichend sein sollte, ist eine Erweiterung jederzeit möglich. Sprechen Sie mich gerne an.
+              </p>
+            </div>
+
+            <div class="service-block">
+              <div class="service-head">
+                <h2>Spezielle Beratung zum Thema Adoption | Hund aus dem Ausland</h2>
+                <span class="price-badge">40 €</span>
+              </div>
+
+              <p>
+  Diese Beratung unterstützt Sie dabei, die Bedürfnisse eines Hundes aus dem Ausland besser einzuschätzen,<br>
+  mögliche Herausforderungen realistisch zu betrachten und den Start im neuen Zuhause möglichst ruhig und sicher zu gestalten.
+</p>
+            </div>
+
+            <div class="service-block">
+              <div class="service-head">
+                <h2>Notfallberatung</h2>
+                <span class="price-badge">50 €</span>
+              </div>
+
+              <p class="service-note">
+                Geeignet z. B. bei Hundebiss, Unfall oder Krankheit.
+              </p>
+
+              <p>
+  In akuten Situationen besprechen wir erste wichtige Schritte, mögliche Managementmaßnahmen
+  und sinnvolle nächste Wege,<br>
+  um die Situation schnellstmöglich zu stabilisieren.
+</p>
+            </div>
+
+            <div class="service-block">
+              <div class="service-head">
+                <h2>Kleintierberatung</h2>
+                <span class="price-badge">ab 25 €</span>
+              </div>
+
+              <p class="service-note">
+                Für Kaninchen, Meerschweinchen und Mäuse.
+              </p>
+
+              <ul>
+                <li>Begleitung und Betreuung vor und während der Anschaffung — 35 €</li>
+                <li>Beratung zur Gehegegestaltung — 25 €</li>
+              </ul>
+            </div>
+<div class="service-block">
+  <div class="service-head">
+    <h2>Telefonische Beratung</h2>
+    <span class="price-badge">25 €</span>
+  </div>
+
+  <p>
+    Notfallberatung zur Besprechung erster Managementmaßnahmen in Akutsituationen.
+  </p>
+</div>
+
+<div class="service-block">
+  <div class="service-head">
+    <h2>Geschirr- und Leinenberatung</h2>
+    <span class="price-badge">15 €</span>
+  </div>
+
+  <p>
+    Beratung zum passenden Geschirr und zur passenden Leine.
+  </p>
+
+  <p>
+    Erklärung, worauf es beim Sitz und Material ankommt.
+  </p>
+</div>
+
+<div class="service-block">
+  <div class="service-head">
+    <h2>Begleitung bei Vermittlung eines Tieres</h2>
+    <span class="price-badge">100 €</span>
+  </div>
+
+  <p>
+    Enthalten sind jeweils der Vor- und Nachbesuch der neuen Halter des Tieres sowie Hilfe bei der Auswahl neuer Halter.
+  </p>
+</div>
+
+<div class="service-block">
+  <div class="service-head">
+    <h2>Beratung vor Anschaffung eines Haustieres</h2>
+    <span class="price-badge">40 €</span>
+  </div>
+
+  <p>
+  In dieser Beratung schauen wir gemeinsam, ob und welches Tier wirklich zu Ihnen und Ihrem Leben passt<br>
+  – ehrlich, individuell und ohne Druck.
+</p>
+
+  <p>
+    Ziel ist es, Ihnen eine sichere Grundlage für eine verantwortungsvolle Entscheidung zu geben.
+  </p>
+
+  <p><strong>Inhalt:</strong></p>
+
+  <ul>
+    <li>Analyse Ihrer aktuellen Lebenssituation</li>
+    <li>Gemeinsame Einschätzung, welches Tier zu Ihnen passen könnte</li>
+    <li>Aufklärung über Bedürfnisse, Aufwand und Verantwortung</li>
+    <li>Realistische Einschätzung des Alltags mit Tier</li>
+    <li>Vorbereitung auf einen gelungenen Start</li>
+  </ul>
+</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="overlay" id="impressum-overlay">
+    <div class="overlay-box">
+      <button class="overlay-close" id="close-impressum" aria-label="Impressum schließen">×</button>
+      <h2>Impressum</h2>
+      <div>
+        <p><strong>Tierpsychologie</strong></p>
+        <p>Pia Bortels</p>
+        <p>Alte Stöckener Str. 94</p>
+        <p>30149 Hannover</p>
+        <p>E-Mail: info@tierpsychologie-seelenbund.de</p>
+        <p>Telefon: 0176 87925330</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container footer-inner">
+     <div class="footer-copyright">© Urheberrecht. Alle Rechte vorbehalten.<span class="footer-brandline">2026 Tierpsychologie Seelenbund.</span></div>
+      <a href="impressum.html">Impressum &amp; Datenschutz</a>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener("load", () => {
+      document.body.classList.add("page-visible");
+    });
+
+    const openImpressumBtn = document.getElementById("open-impressum");
+    const closeImpressumBtn = document.getElementById("close-impressum");
+    const impressumOverlay = document.getElementById("impressum-overlay");
+
+    if (openImpressumBtn && closeImpressumBtn && impressumOverlay) {
+      openImpressumBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        impressumOverlay.classList.add("active");
+      });
+
+      closeImpressumBtn.addEventListener("click", function () {
+        impressumOverlay.classList.remove("active");
+      });
+
+      impressumOverlay.addEventListener("click", function (e) {
+        if (e.target === impressumOverlay) {
+          impressumOverlay.classList.remove("active");
+        }
+      });
+    }
+
+    const protectedOffers = document.querySelector('.service-scroll');
+    if (protectedOffers) {
+      ['copy', 'cut', 'contextmenu', 'dragstart'].forEach((eventName) => {
+        protectedOffers.addEventListener(eventName, (event) => event.preventDefault());
+      });
+    }
+
+    document.querySelectorAll('a[href]').forEach(link => {
+      const href = link.getAttribute('href');
+
+      if (
+        href &&
+        !href.startsWith('#') &&
+        !href.startsWith('mailto:') &&
+        !href.startsWith('tel:') &&
+        !link.hasAttribute('target') &&
+        link.id !== 'open-impressum'
+      ) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.body.classList.remove('page-visible');
+          document.body.classList.add('page-fade-out');
+
+          setTimeout(() => {
+            window.location.href = href;
+          }, 350);
+        });
+      }
+    });
+  </script>
+<script src="files/responsive.js"></script>
+</body>
+</html>
