@@ -1,0 +1,106 @@
+.privacy-consent {
+  position: fixed;
+  right: 1rem;
+  bottom: calc(var(--footer-h, 55px) + 1rem);
+  left: 1rem;
+  z-index: 4800;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  width: min(calc(100% - 2rem), 760px);
+  margin: 0 auto;
+  padding: 1rem 1.1rem;
+  color: var(--text, #4d4038);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.97), rgba(255, 248, 243, 0.96));
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 18px;
+  box-shadow: 0 18px 46px rgba(99, 74, 58, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.privacy-consent[hidden] {
+  display: none;
+}
+
+.privacy-consent-copy {
+  min-width: 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.privacy-consent-copy strong {
+  display: block;
+  margin-bottom: 0.12rem;
+  color: #a97f60;
+}
+
+.privacy-consent-copy a {
+  color: #a97f60;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.privacy-consent-actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 0.5rem;
+}
+
+.privacy-consent-button {
+  min-height: 38px;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid rgba(77, 64, 56, 0.09);
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.privacy-consent-button:hover,
+.privacy-consent-button:focus-visible {
+  transform: translateY(-1px);
+}
+
+.privacy-consent-decline {
+  color: var(--text, #4d4038);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.privacy-consent-accept {
+  color: white;
+  background: #d7b89a;
+}
+
+.privacy-consent-accept:hover,
+.privacy-consent-accept:focus-visible {
+  background: #caa786;
+}
+
+.privacy-settings-status {
+  margin-left: 0.55rem;
+  color: #6f6159;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 640px) {
+  .privacy-consent {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.75rem;
+    bottom: calc(var(--footer-h, 42px) + 0.6rem);
+    padding: 0.85rem;
+  }
+
+  .privacy-consent-actions {
+    width: 100%;
+  }
+
+  .privacy-consent-button {
+    flex: 1 1 0;
+  }
+}
